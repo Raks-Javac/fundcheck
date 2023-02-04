@@ -24,6 +24,32 @@ This is mainly for tracking your finances and help you in managing your expenses
 ```flutter build apk --release
 ```
 
+
+
+## App Structure
+
+
+- lib/src/features
+
+This folder contains the app features as this app is layered by its features basically a domain driven development currently
+
+
+- lib/src/core
+
+This folder contains the core or skelental reusables for the app functionality such as navigation system, network services ...etc
+
+
+- lib/src/shared/res
+
+This folder contains the app resources and styling components  such as colors, strings , theme , typography ..etc.
+
+
+- lib/src/shared/widgets
+
+This folder contains app level reusable widgets such as button, text fields ...etc.
+
+
+
 ## Usage
 
 Track expenses
