@@ -5,8 +5,14 @@ class OnBoardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      body: Container(),
+      body: Container(
+        child: Text(
+          "OnBoarding",
+          style: theme.textTheme.bodyMedium,
+        ),
+      ),
     );
   }
 }
