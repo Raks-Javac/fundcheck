@@ -9,7 +9,7 @@ abstract class FTheme {
       primaryColor: FColors.primaryBlue,
       errorColor: FColors.primaryRed,
       primaryColorLight: FColors.primaryBlue,
-      textTheme: TextTheme(),
+      textTheme: const TextTheme(),
     );
   }
 
@@ -19,7 +19,7 @@ abstract class FTheme {
       primaryColor: FColors.primaryBlue,
       errorColor: FColors.primaryRed,
       primaryColorLight: FColors.primaryBlue,
-      textTheme: TextTheme(),
+      textTheme: const TextTheme(),
     );
   }
 }
