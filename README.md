@@ -25,6 +25,10 @@ This is mainly for tracking your finances and help you in managing your expenses
 ```
 
 
+## Usage
+
+Track expenses
+
 
 ## App Structure
 
@@ -41,7 +45,7 @@ This folder contains the core or skelental reusables for the app functionality s
 
 - lib/src/shared/res
 
-This folder contains the app resources and styling components  such as colors, strings , theme , typography ..etc.
+This folder contains the app resources and styling components  such as colors, strings , theme , typography ..etc. 
 
 
 - lib/src/shared/widgets
@@ -49,10 +53,15 @@ This folder contains the app resources and styling components  such as colors, s
 This folder contains app level reusable widgets such as button, text fields ...etc.
 
 
+## Naming convention
 
-## Usage
+Currently all class are named with the prefix on the app name in mind e.g the current app name is Fundcheck so all classes start with the prefix 
+"F".
 
-Track expenses
+- Example 
+
+- FColors : an abstract class containing all  the app defined colors
+- FTypography : an abstract class containing all  the app defined text system
 
 ## Contributing
 
