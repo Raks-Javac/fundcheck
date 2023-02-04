@@ -8,9 +8,11 @@ class OnBoardingView extends StatelessWidget {
     final theme = Theme.of(context);
     return Scaffold(
       body: Container(
-        child: Text(
-          "OnBoarding",
-          style: theme.textTheme.bodyMedium,
+        child: Center(
+          child: Text(
+            "OnBoarding",
+            style: theme.textTheme.bodyMedium,
+          ),
         ),
       ),
     );
