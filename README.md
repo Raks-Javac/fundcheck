@@ -23,8 +23,8 @@ flutter run -v
 
 - To build an apk and run on your physical devices
 
-```f
-lutter build apk --release
+```
+flutter build apk --release
 ```
 
 
