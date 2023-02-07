@@ -11,17 +11,20 @@ This is mainly for tracking your finances and help you in managing your expenses
 
 - To get all the dependences needed for the app
 
-``` flutter pub get -v
+``` 
+flutter pub get -v
 ```
 
 - To run on your local machine provided you have the  flutter SDK installed
 
-``` flutter run -v
+``` 
+flutter run -v
 ```
 
 - To build an apk and run on your physical devices
 
-```flutter build apk --release
+```f
+lutter build apk --release
 ```
 
 
