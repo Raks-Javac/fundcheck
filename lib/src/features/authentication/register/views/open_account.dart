@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
@@ -9,38 +10,16 @@ import '../../../../shared/widgets/app_bar/primary_app_bar.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
 import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
+import '../provider/fade_provider.dart';
 import 'verify_email.dart';
 
-class OpenAccount extends StatefulWidget {
+class OpenAccount extends ConsumerWidget {
   const OpenAccount({super.key});
 
   @override
-  State<OpenAccount> createState() => _OpenAccountState();
-}
-
-class _OpenAccountState extends State<OpenAccount> {
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
-
-  bool _isButtonEnabled = false;
-
-  void _checkTextField() {
-    setState(() {
-      if (_firstNameController.text.isNotEmpty &&
-          _lastNameController.text.isNotEmpty &&
-          _emailController.text.isNotEmpty &&
-          _phoneController.text.isNotEmpty) {
-        _isButtonEnabled = true;
-      } else {
-        _isButtonEnabled = false;
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(registerProvider);
+    final registerNotifier = ref.watch(registerProvider.notifier);
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
@@ -57,82 +36,74 @@ class _OpenAccountState extends State<OpenAccount> {
                 children: [
                   FAuthTField(
                     useOpacityForValidation: true,
-                    isFieldValidated: _isButtonEnabled,
+                    isFieldValidated: registerNotifier.enableButtonGetter,
                     label: 'First name',
                     hintText: 'Enter your first name',
-                    textEditingController: _firstNameController,
+                    textEditingController: registerNotifier.firstNameController,
                     validator: (value) => FCheckValidator.validateName(value!),
-                    onChanged: (_) {
-                      _checkTextField();
+                    onChanged: (val) {
+                      registerNotifier.checkTextField(val);
                     },
                   ),
                   addVertSpace(20),
                   FAuthTField(
-                    isFieldValidated: _isButtonEnabled,
+                    isFieldValidated: registerNotifier.enableButtonGetter,
                     useOpacityForValidation: true,
                     label: 'Last name',
                     hintText: 'Enter your first name',
-                    textEditingController: _lastNameController,
-                    onChanged: (_) {
-                      _checkTextField();
+                    textEditingController: registerNotifier.lastNameController,
+                    onChanged: (val) {
+                      registerNotifier.checkTextField(val);
                     },
                     validator: (value) => FCheckValidator.validateName(value!),
                   ),
                   addVertSpace(20),
-                  Opacity(
-                    opacity: _isButtonEnabled ? 1 : 0.5,
-                    child: FAuthTField(
-                      isFieldValidated: _isButtonEnabled,
-                      useOpacityForValidation: true,
-                      label: 'Email address',
-                      hintText: 'fundcheck@gmail.com',
-                      textEditingController: _emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) =>
-                          FCheckValidator.validateEmail(value!),
-                      onChanged: (_) {
-                        _checkTextField();
-                      },
-                    ),
+                  FAuthTField(
+                    isFieldValidated: registerNotifier.enableButtonGetter,
+                    useOpacityForValidation: true,
+                    label: 'Email address',
+                    hintText: 'fundcheck@gmail.com',
+                    textEditingController: registerNotifier.emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value) => FCheckValidator.validateEmail(value!),
+                    onChanged: (val) {
+                      registerNotifier.checkTextField(val);
+                    },
                   ),
                   addVertSpace(20),
                   FAuthTField(
-                    isFieldValidated: _isButtonEnabled,
+                    isFieldValidated: registerNotifier.enableButtonGetter,
                     useOpacityForValidation: true,
                     label: 'Phone number',
                     hintText: 'Enter your phone number',
-                    textEditingController: _phoneController,
+                    textEditingController: registerNotifier.phoneController,
                     keyboardType: TextInputType.number,
                     validator: (val) =>
                         FCheckValidator.validatePhoneNumber(val!),
-                    onChanged: (_) {
-                      _checkTextField();
+                    onChanged: (val) {
+                      registerNotifier.checkTextField(val);
                     },
                   ),
                   const Spacer(),
-                  Opacity(
-                    opacity: _isButtonEnabled ? 1 : 0.5,
-                    child: FWIdgetsPrimaryButton(
-                      buttonTitle: 'Continue',
-                      isEnabled: true,
-                      onPressed: () {
-                        // _formKey.currentState!.validate();
-                        _isButtonEnabled
-                            ? FNavigator.displayBottomSheet(
-                                context, VerifyEmail())
-                            : () {};
-                      },
-                      icon: const Padding(
-                        padding: EdgeInsets.only(left: 10.0),
-                        child: Center(
-                          child: FWidgetsRenderSvg(
-                            iconColor: FColors.white,
-                            iconPath: FIcons.arrowRight,
-                          ),
+                  FWIdgetsPrimaryButton(
+                    buttonTitle: 'Continue',
+                    isEnabled: registerNotifier.enableButtonGetter,
+                    onPressed: () {
+                      // _formKey.currentState!.validate();
+                      if (registerNotifier.enableButtonGetter == true) {
+                        FNavigator.displayBottomSheet(context, VerifyEmail());
+                      }
+                    },
+                    icon: const Padding(
+                      padding: EdgeInsets.only(left: 10.0),
+                      child: Center(
+                        child: FWidgetsRenderSvg(
+                          iconColor: FColors.white,
+                          iconPath: FIcons.arrowRight,
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
