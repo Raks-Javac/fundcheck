@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class FadeProvider extends StateNotifier {
-  FadeProvider(super.state);
+final registerProvider = StateNotifierProvider((ref) {
+  return RegisterProvider(false);
+});
 
-  bool _isButtonEnabled = false;
+class RegisterProvider extends StateNotifier<bool> {
+  RegisterProvider(super.state);
 
-  final TextEditingController _firstNameController = TextEditingController();
-  final TextEditingController _lastNameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _phoneController = TextEditingController();
+  bool get enableButtonGetter => state;
 
-  void _checkTextField() {
-    if (_firstNameController.text.isNotEmpty &&
-        _lastNameController.text.isNotEmpty &&
-        _emailController.text.isNotEmpty &&
-        _phoneController.text.isNotEmpty) {
-      _isButtonEnabled = true;
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController phoneController = TextEditingController();
+
+  void checkTextField() {
+    if (firstNameController.text.isNotEmpty &&
+        lastNameController.text.isNotEmpty &&
+        emailController.text.isNotEmpty &&
+        phoneController.text.isNotEmpty) {
+      state = true;
     } else {
-      _isButtonEnabled = false;
+      state = false;
     }
   }
 }
