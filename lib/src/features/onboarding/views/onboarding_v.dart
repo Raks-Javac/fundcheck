@@ -4,12 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app_level_locator/provider_locator.dart';
 import '../../../core/navigation/navigation_helpers.dart';
+import '../../../core/utils/extensions.dart';
 import '../../../shared/res/gap.dart';
 import '../../../shared/res/res.dart';
 import '../../../shared/res/theme/provider/theme/theme_provider.dart';
 import '../../../shared/widgets/buttons/bordered_buttton.dart';
 import '../../../shared/widgets/buttons/primary_button.dart';
-import '../../authentication/register/views/register_v.dart';
+import '../../authentication/register/views/open_account.dart';
 
 class OnBoardingView extends ConsumerWidget {
   const OnBoardingView({super.key});
@@ -17,7 +18,6 @@ class OnBoardingView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     ref.watch(themeProvider);
-    final theme = Theme.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -31,7 +31,7 @@ class OnBoardingView extends ConsumerWidget {
                 children: [
                   Text(
                     "OnBoarding",
-                    style: theme.textTheme.bodyMedium,
+                    style: context.theme.textTheme.bodyMedium,
                   ),
                   CupertinoSwitch(
                     value: ref.watch(themeProvider.notifier).mode ==
@@ -42,8 +42,8 @@ class OnBoardingView extends ConsumerWidget {
                       ref.watch(themeProvider.notifier).changeIfBool(val);
                     },
                     thumbColor: FColors.white,
-                    trackColor: theme.primaryColor,
-                    activeColor: theme.primaryColor,
+                    trackColor: context.theme.primaryColor,
+                    activeColor: context.theme.primaryColor,
                   )
                 ],
               ),
@@ -52,6 +52,7 @@ class OnBoardingView extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: FWIdgetsPrimaryButton(
+                    isEnabled: true,
                     buttonTitle: 'Open an account',
                     onPressed: () =>
                         FNavigator.navigateToRoute(const OpenAccount())),

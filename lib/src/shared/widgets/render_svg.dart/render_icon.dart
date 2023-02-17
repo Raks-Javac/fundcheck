@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RenderSvg extends StatelessWidget {
+class FWidgetsRenderSvg extends StatelessWidget {
   final String? iconPath;
-  const RenderSvg({super.key, required this.iconPath});
+  const FWidgetsRenderSvg({super.key, required this.iconPath});
 
   @override
   Widget build(BuildContext context) {
