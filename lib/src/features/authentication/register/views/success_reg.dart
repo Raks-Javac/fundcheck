@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
+import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
 
@@ -11,8 +12,8 @@ class SuccessView extends StatelessWidget {
   final TextEditingController _otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Container(
+      color: context.theme.scaffoldBackgroundColor,
       height: screenHeight(context) / 1.5,
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
       child: Column(
@@ -23,17 +24,18 @@ class SuccessView extends StatelessWidget {
           addVertSpace(70),
           Text(
             'Congratulations',
-            style: theme.textTheme.bodyLarge!
+            style: context.theme.textTheme.bodyLarge!
                 .copyWith(fontWeight: FontWeight.bold, fontSize: 22.sp),
           ),
           addVertSpace(30),
           Text(
             'Your account has been set up\n Please proceed to login',
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyLarge!.copyWith(fontSize: 15),
+            style: context.theme.textTheme.bodyLarge!.copyWith(fontSize: 15),
           ),
           const Spacer(),
           FWIdgetsPrimaryButton(
+            isEnabled: true,
             buttonTitle: 'Log in',
             onPressed: () {},
             icon: Image.asset(

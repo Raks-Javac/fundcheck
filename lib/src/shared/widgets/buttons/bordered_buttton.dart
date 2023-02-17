@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../core/utils/extensions.dart';
 
 class FWidgetsBorderedButton extends StatelessWidget {
   final String buttonTitle;
@@ -12,14 +14,13 @@ class FWidgetsBorderedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return GestureDetector(
       onTap: onPressed,
       child: Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
-            border: Border.all(width: 1.0, color: theme.primaryColor)),
+            border: Border.all(width: 1.0, color: context.theme.primaryColor)),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 13.0),
           child: Center(
@@ -28,8 +29,9 @@ class FWidgetsBorderedButton extends StatelessWidget {
               children: [
                 Text(
                   buttonTitle,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.primaryColor,
+                  style: context.theme.textTheme.bodyMedium!.copyWith(
+                    color: context.theme.primaryColor,
+                    fontSize: 14.5.sp,
                   ),
                 ),
                 if (icon != null) icon!

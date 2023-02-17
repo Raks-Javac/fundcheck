@@ -1,11 +1,9 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fundcheck/src/shared/res/res.dart';
-import 'package:fundcheck/src/shared/res/ui_helper.dart';
+
+import '../../res/res.dart';
+import '../../res/ui_helper.dart';
 
 class FAuthTField extends StatelessWidget {
   final Widget? prefixIcon;
@@ -22,23 +20,27 @@ class FAuthTField extends StatelessWidget {
   final TextInputFormatter? formatter;
   final bool? isEnabled;
   final int? maxLength;
-  const FAuthTField({
-    Key? key,
-    required this.label,
-    this.prefixIcon,
-    this.maxLength,
-    this.onTap,
-    this.suffixIcon,
-    this.hintText,
-    this.keyboardType,
-    this.obscureText,
-    this.onChanged,
-    this.formatter,
-    this.validator,
-    this.textEditingController,
-    this.isEnabled,
-    this.onSaved
-  }) : super(key: key);
+  final bool useOpacityForValidation;
+  final bool isFieldValidated;
+  const FAuthTField(
+      {Key? key,
+      required this.label,
+      required this.useOpacityForValidation,
+      this.isFieldValidated = false,
+      this.prefixIcon,
+      this.maxLength,
+      this.onTap,
+      this.suffixIcon,
+      this.hintText,
+      this.keyboardType,
+      this.obscureText,
+      this.onChanged,
+      this.formatter,
+      this.validator,
+      this.textEditingController,
+      this.isEnabled,
+      this.onSaved})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -49,18 +51,21 @@ class FAuthTField extends StatelessWidget {
         Text(
           label!,
           style: theme.textTheme.bodyMedium!.copyWith(
-             // fontWeight: FontWeight.w900,
+              // fontWeight: FontWeight.w900,
               fontSize: screenAwareSize(22, context)),
         ),
-        SizedBox(height: 3.h),
-        Padding(
-          padding: const EdgeInsets.only(left: 2.0),
-          child: SizedBox(
-          //  height: 40.h,
-            child: Material(
-              elevation: 0,
-              shadowColor:FColors.black.withOpacity(0.4),
-              borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+        addVertSpace(8.5.h),
+        SizedBox(
+          child: Material(
+            elevation: 0,
+            shadowColor: FColors.black.withOpacity(0.4),
+            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+            child: Opacity(
+              opacity: (useOpacityForValidation == true)
+                  ? (isFieldValidated == true)
+                      ? 1
+                      : 0.5
+                  : 1,
               child: TextFormField(
                 autovalidateMode: AutovalidateMode.always,
                 maxLengthEnforcement: MaxLengthEnforcement.none,
@@ -81,7 +86,12 @@ class FAuthTField extends StatelessWidget {
                   formatter ?? FilteringTextInputFormatter.singleLineFormatter
                 ],
                 style: theme.textTheme.bodySmall!.copyWith(fontSize: 14.sp),
+
                 decoration: InputDecoration(
+                    errorStyle: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.error,
+                      fontSize: 10.sp,
+                    ),
                     hintText: hintText,
                     contentPadding: const EdgeInsets.only(
                       left: 15.0,
@@ -90,24 +100,30 @@ class FAuthTField extends StatelessWidget {
                     // prefixIcon: Padding(
                     //     padding: const EdgeInsets.all(13.0), child: prefixIcon),
                     suffixIcon: suffixIcon,
-                    disabledBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: FColors.black, width: 1.5),
+                    disabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: theme.textTheme.bodyLarge!.color!,
+                            width: 1.5),
                         borderRadius:
-                             BorderRadius.all(Radius.circular(5.0))),
-                    border: const OutlineInputBorder(
-                        borderSide: BorderSide(color: FColors.black, width: 1.5),
-                        borderRadius: BorderRadius.all(Radius.circular(5.0))),
-                    focusedBorder: const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: FColors.black, width: 1.5),
+                            const BorderRadius.all(Radius.circular(5.0))),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: theme.textTheme.bodyLarge!.color!,
+                            width: 1.5),
                         borderRadius:
-                             BorderRadius.all(Radius.circular(5.0))),
-                    enabledBorder:const OutlineInputBorder(
-                        borderSide:
-                            BorderSide(color: FColors.black, width: 1.5),
+                            const BorderRadius.all(Radius.circular(5.0))),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: theme.textTheme.bodyLarge!.color!,
+                            width: 1.5),
                         borderRadius:
-                             BorderRadius.all(Radius.circular(5.0)))),
+                            const BorderRadius.all(Radius.circular(5.0))),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: theme.textTheme.bodyLarge!.color!,
+                            width: 1.5),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(5.0)))),
               ),
             ),
           ),
