@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../res/res.dart';
 
@@ -26,11 +27,13 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 15.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               buttonTitle,
               style: theme.textTheme.bodyMedium!.copyWith(
                 color: FColors.white,
+                fontSize: 18.sp
               ),
             ),
             if (icon != null) icon!
@@ -40,3 +43,7 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
     );
   }
 }
+
+
+
+
