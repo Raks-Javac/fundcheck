@@ -10,8 +10,7 @@ displayBottomSheet(context, Widget bottomSheet) {
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0))),
       builder: (context) => Padding(
-          padding: MediaQuery.of(context).viewInsets,
-          child: GestureDetector(onTap: dismissKeyboard, child: bottomSheet)));
+          padding: MediaQuery.of(context).viewInsets, child: bottomSheet));
 }
 
 void dismissKeyboard() {

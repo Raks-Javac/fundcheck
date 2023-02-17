@@ -6,9 +6,8 @@ import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
 
 class SuccessView extends StatelessWidget {
-  SuccessView({super.key});
+  const SuccessView({super.key});
 
-  final TextEditingController _otpController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Container(
