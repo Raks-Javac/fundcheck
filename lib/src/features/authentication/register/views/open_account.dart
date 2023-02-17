@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../core/utils/validators/f_validators.dart';
+import '../../../../shared/res/res.dart';
 import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/app_bar/primary_app_bar.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
+import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 import 'verify_email.dart';
 
@@ -120,8 +122,14 @@ class _OpenAccountState extends State<OpenAccount> {
                                 context, VerifyEmail())
                             : () {};
                       },
-                      icon: Image.asset(
-                        'assets/images/arrow-right.png',
+                      icon: const Padding(
+                        padding: EdgeInsets.only(left: 10.0),
+                        child: Center(
+                          child: FWidgetsRenderSvg(
+                            iconColor: FColors.white,
+                            iconPath: FIcons.arrowRight,
+                          ),
+                        ),
                       ),
                     ),
                   )

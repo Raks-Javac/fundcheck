@@ -4,7 +4,9 @@ import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/res.dart';
 import '../../../../shared/res/ui_helper.dart';
+import '../../../../shared/widgets/app_bar/primary_app_bar.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
+import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 import '../../widget/check_validate.dart';
 import 'success_reg.dart';
@@ -84,172 +86,178 @@ class _CreatePasswordState extends State<CreatePassword> {
 
   @override
   Widget build(BuildContext context) {
-    String image = 'assets/images/cancel.png';
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Image.asset(image),
-        ),
-        title: Text(
-          'Create password',
-          style: context.theme.textTheme.bodyLarge!
-              .copyWith(fontWeight: FontWeight.bold),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        centerTitle: true,
-      ),
-      body: Container(
-        padding:
-            const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 30),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              FAuthTField(
-                label: 'Password',
-                isFieldValidated: _opacityEnabled,
-                useOpacityForValidation: true,
-                obscureText: _obscure1,
-                textEditingController: _passwordController1,
-                validator: (val) {
-                  if (val == null || val.isEmpty) {
-                    return 'Please enter a password';
-                  }
-                  if (val.length < 6) {
-                    return 'Password must be 6 character';
-                  }
-                  return null;
-                },
-                onChanged: (value) {
-                  checkOpacity();
-                  onPasswordChange(value);
-                  setState(() {
-                    password = value!;
-                  });
-                },
-                hintText: 'Enter your password',
-                suffixIcon: GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        toggle1();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Show',
-                            style: context.theme.textTheme.bodyMedium!
-                                .copyWith(fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ),
-                ),
+      body: Column(
+        children: [
+          addVertSpace(20),
+          FWidgetsPrimaryAppBar(
+            title: "Create password",
+            leadingIcon: IconButton(
+              onPressed: () {
+                FNavigator.popSheet();
+              },
+              icon: FWidgetsRenderSvg(
+                iconColor: context.theme.textTheme.bodyLarge?.color,
+                iconPath: FIcons.cancel,
+                height: 30,
+                width: 30,
               ),
-              addVertSpace(20),
-              FAuthTField(
-                useOpacityForValidation: true,
-                isFieldValidated: _opacityEnabled,
-                label: 'Password',
-                obscureText: _obscure2,
-                textEditingController: _passwordController2,
-                hintText: 'Enter your password',
-                validator: (val) {
-                  if (val == null || val.isEmpty) {
-                    return 'Please enter a password';
-                  }
-                  if (val.length < 6) {
-                    return 'Password must be 6 character';
-                  }
-                  return null;
-                },
-                // onSaved: (val){
-                //   confirmPassword = val!;
-                // },
-                onChanged: (val) {
-                  checkOpacity();
-                  onPasswordChange(val);
-                  setState(() {
-                    password = val!;
-                  });
-                },
-                suffixIcon: GestureDetector(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        toggle2();
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Show',
-                            style: context.theme.textTheme.bodyMedium!
-                                .copyWith(fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              addVertSpace(20),
-              Column(
-                children: [
-                  ValPassword(
-                    theme: context.theme,
-                    label: 'Six characters',
-                    color: isPasswordLength
-                        ? FColors.primaryGreen
-                        : Colors.transparent,
-                  ),
-                  ValPassword(
-                    theme: context.theme,
-                    label: 'One alphabet and number',
-                    color: hasPasswordOneNumber
-                        ? FColors.primaryGreen
-                        : Colors.transparent,
-                  ),
-                  ValPassword(
-                    theme: context.theme,
-                    label: 'One upper case and lower case alphabet',
-                    color: hasPasswordOneNumber
-                        ? FColors.primaryGreen
-                        : Colors.transparent,
-                  ),
-                  ValPassword(
-                    theme: context.theme,
-                    label: 'One special character(@ # \$ *)',
-                    color: specialCharacter
-                        ? FColors.primaryGreen
-                        : Colors.transparent,
-                  ),
-                  ValPassword(
-                    theme: context.theme,
-                    label: 'Equal password and confirm password',
-                    color: passwordCheck
-                        ? FColors.primaryGreen
-                        : Colors.transparent,
-                  ),
-                ],
-              ),
-              const Spacer(),
-              Opacity(
-                opacity: _opacityEnabled ? 1 : 0.5,
-                child: FWIdgetsPrimaryButton(
-                    isEnabled: true,
-                    buttonTitle: 'Create account',
-                    onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        _opacityEnabled
-                            ? FNavigator.displayBottomSheet(
-                                context, SuccessView())
-                            : null;
-                      }
-                    }),
-              )
-            ],
+            ),
           ),
-        ),
+          Flexible(
+            child: Container(
+              padding: const EdgeInsets.only(
+                  left: 20, right: 20, top: 20, bottom: 30),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    FAuthTField(
+                      label: 'Password',
+                      isFieldValidated: _opacityEnabled,
+                      useOpacityForValidation: true,
+                      obscureText: _obscure1,
+                      textEditingController: _passwordController1,
+                      validator: (val) {
+                        if (val == null || val.isEmpty) {
+                          return 'Please enter a password';
+                        }
+                        if (val.length < 6) {
+                          return 'Password must be 6 character';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        checkOpacity();
+                        onPasswordChange(value);
+                        setState(() {
+                          password = value!;
+                        });
+                      },
+                      hintText: 'Enter your password',
+                      suffixIcon: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              toggle1();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('Show',
+                                  style: context.theme.textTheme.bodyMedium!
+                                      .copyWith(fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    addVertSpace(20),
+                    FAuthTField(
+                      useOpacityForValidation: true,
+                      isFieldValidated: _opacityEnabled,
+                      label: 'Password',
+                      obscureText: _obscure2,
+                      textEditingController: _passwordController2,
+                      hintText: 'Enter your password',
+                      validator: (val) {
+                        if (val == null || val.isEmpty) {
+                          return 'Please enter a password';
+                        }
+                        if (val.length < 6) {
+                          return 'Password must be 6 character';
+                        }
+                        return null;
+                      },
+                      // onSaved: (val){
+                      //   confirmPassword = val!;
+                      // },
+                      onChanged: (val) {
+                        checkOpacity();
+                        onPasswordChange(val);
+                        setState(() {
+                          password = val!;
+                        });
+                      },
+                      suffixIcon: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: GestureDetector(
+                            onTap: () {
+                              toggle2();
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('Show',
+                                  style: context.theme.textTheme.bodyMedium!
+                                      .copyWith(fontWeight: FontWeight.bold)),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    addVertSpace(20),
+                    Column(
+                      children: [
+                        ValPassword(
+                          theme: context.theme,
+                          label: 'Six characters',
+                          color: isPasswordLength
+                              ? FColors.primaryGreen
+                              : Colors.transparent,
+                        ),
+                        ValPassword(
+                          theme: context.theme,
+                          label: 'One alphabet and number',
+                          color: hasPasswordOneNumber
+                              ? FColors.primaryGreen
+                              : Colors.transparent,
+                        ),
+                        ValPassword(
+                          theme: context.theme,
+                          label: 'One upper case and lower case alphabet',
+                          color: hasPasswordOneNumber
+                              ? FColors.primaryGreen
+                              : Colors.transparent,
+                        ),
+                        ValPassword(
+                          theme: context.theme,
+                          label: 'One special character(@ # \$ *)',
+                          color: specialCharacter
+                              ? FColors.primaryGreen
+                              : Colors.transparent,
+                        ),
+                        ValPassword(
+                          theme: context.theme,
+                          label: 'Equal password and confirm password',
+                          color: passwordCheck
+                              ? FColors.primaryGreen
+                              : Colors.transparent,
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Opacity(
+                      opacity: _opacityEnabled ? 1 : 0.5,
+                      child: FWIdgetsPrimaryButton(
+                          isEnabled: true,
+                          buttonTitle: 'Create account',
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _opacityEnabled
+                                  ? FNavigator.displayBottomSheet(
+                                      context, SuccessView())
+                                  : null;
+                            }
+                          }),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
