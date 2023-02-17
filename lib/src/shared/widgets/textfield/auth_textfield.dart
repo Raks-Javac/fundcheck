@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/utils/extensions.dart';
 import '../../res/res.dart';
 import '../../res/ui_helper.dart';
 
@@ -74,7 +75,7 @@ class FAuthTField extends StatelessWidget {
                 // maxLength: maxLength,
                 onSaved: onSaved,
                 controller: textEditingController!,
-                cursorColor: FColors.primaryBlue,
+                cursorColor: context.theme.textTheme.bodyLarge?.color,
                 cursorWidth: 0.7,
                 keyboardType: keyboardType,
                 obscureText: obscureText ?? false,

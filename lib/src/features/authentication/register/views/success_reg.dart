@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
@@ -18,7 +17,6 @@ class SuccessView extends StatelessWidget {
       padding: const EdgeInsets.only(left: 20, right: 20, bottom: 30),
       child: Column(
         children: [
-          FNavigator.dividerModelSheet(),
           addVertSpace(50),
           Image.asset('assets/images/check.png'),
           addVertSpace(70),
