@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
-import 'package:fundcheck/src/features/authentication/register/views/register_v.dart';
+import '../../../core/navigation/navigation_helpers.dart';
+import '../../authentication/register/views/register_v.dart';
 
 import '../../../app_level_locator/provider_locator.dart';
 import '../../../core/provider/theme/theme_provider.dart';
@@ -51,11 +51,10 @@ class OnBoardingView extends ConsumerWidget {
               // FPrimaryButton(onClick: (){}, label: 'Open an account',),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: 
-                   FWIdgetsPrimaryButton(
-                        buttonTitle: 'Open an account',
-                        onPressed: () => FNavigator.navigateToRoute(
-                             OpenAccount())),
+                child: FWIdgetsPrimaryButton(
+                    buttonTitle: 'Open an account',
+                    onPressed: () =>
+                        FNavigator.navigateToRoute(const OpenAccount())),
               ),
               addVerticalSpacing(10),
               Padding(
