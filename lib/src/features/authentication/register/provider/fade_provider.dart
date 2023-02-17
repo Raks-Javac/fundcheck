@@ -15,7 +15,7 @@ class RegisterProvider extends StateNotifier<bool> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
 
-  void checkTextField() {
+  void checkTextField(String currentInputtedValue) {
     if (firstNameController.text.isNotEmpty &&
         lastNameController.text.isNotEmpty &&
         emailController.text.isNotEmpty &&
