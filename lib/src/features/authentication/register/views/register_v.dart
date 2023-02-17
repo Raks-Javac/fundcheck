@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
-import 'package:fundcheck/src/features/authentication/register/views/create_password.dart';
-import 'package:fundcheck/src/features/authentication/register/views/verify_email.dart';
-import 'package:fundcheck/src/shared/res/res.dart';
-import 'package:fundcheck/src/shared/res/ui_helper.dart';
-import 'package:fundcheck/src/shared/textfield/auth_textfield.dart';
-import 'package:fundcheck/src/shared/validators/f_validators.dart';
-import 'package:fundcheck/src/shared/widgets/buttons/primary_button.dart';
+
+import '../../../../core/navigation/navigation_helpers.dart';
+import '../../../../shared/res/res.dart';
+import '../../../../shared/res/ui_helper.dart';
+import '../../../../shared/textfield/auth_textfield.dart';
+import '../../../../shared/validators/f_validators.dart';
+import '../../../../shared/widgets/buttons/primary_button.dart';
+import 'verify_email.dart';
 
 class OpenAccount extends StatefulWidget {
-  OpenAccount({super.key});
+  const OpenAccount({super.key});
 
   @override
   State<OpenAccount> createState() => _OpenAccountState();
@@ -140,5 +139,3 @@ class _OpenAccountState extends State<OpenAccount> {
     );
   }
 }
-
-
