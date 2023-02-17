@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../shared/res/ui_helper.dart';
-import '../../../../shared/textfield/auth_textfield.dart';
+import '../../../../shared/widgets/textfield/auth_textfield.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
 import 'create_password.dart';
 

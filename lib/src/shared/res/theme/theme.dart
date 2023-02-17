@@ -1,4 +1,4 @@
-part of 'res.dart';
+part of '../res.dart';
 
 abstract class FTheme {
   FTheme._();
@@ -7,7 +7,6 @@ abstract class FTheme {
     return ThemeData(
       scaffoldBackgroundColor: FColors.whiteModeBackgroundColor,
       primaryColor: FColors.primaryBlue,
-      errorColor: FColors.primaryRed,
       primaryColorLight: FColors.primaryBlue,
       textTheme: TextTheme(
         bodyMedium: FTypography.bodyMedium.copyWith(),
@@ -20,6 +19,9 @@ abstract class FTheme {
         headlineMedium: FTypography.headlineMedium,
         headlineSmall: FTypography.headlineSmall,
         labelLarge: FTypography.button,
+        //the color scheme requires alot of parameters in the new flutter SDK update
+        // colorScheme: ColorScheme(
+        //     error: FColors.primaryRed, background: Colors.transparent),
       ),
     );
   }
@@ -28,7 +30,6 @@ abstract class FTheme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: FColors.darkModeBackgroundColor,
       primaryColor: FColors.primaryBlue,
-      errorColor: FColors.primaryRed,
       primaryColorLight: FColors.primaryBlue,
       textTheme: TextTheme(
         bodyMedium: FTypography.bodyMedium.copyWith(color: FColors.white),
@@ -43,6 +44,9 @@ abstract class FTheme {
         headlineSmall: FTypography.headlineSmall.copyWith(color: FColors.white),
         labelLarge: FTypography.button.copyWith(color: FColors.white),
       ),
+      //the color scheme requires alot of parameters in the new flutter SDK update
+      // colorScheme: ColorScheme(
+      //     error: FColors.primaryRed, background: Colors.transparent),
     );
   }
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/navigation/navigation_helpers.dart';
-import '../../authentication/register/views/register_v.dart';
 
 import '../../../app_level_locator/provider_locator.dart';
-import '../../../core/provider/theme/theme_provider.dart';
+import '../../../core/navigation/navigation_helpers.dart';
 import '../../../shared/res/gap.dart';
 import '../../../shared/res/res.dart';
+import '../../../shared/res/theme/provider/theme/theme_provider.dart';
 import '../../../shared/widgets/buttons/bordered_buttton.dart';
 import '../../../shared/widgets/buttons/primary_button.dart';
+import '../../authentication/register/views/register_v.dart';
 
 class OnBoardingView extends ConsumerWidget {
   const OnBoardingView({super.key});
