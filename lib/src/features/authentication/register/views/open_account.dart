@@ -89,7 +89,6 @@ class OpenAccount extends ConsumerWidget {
                     buttonTitle: 'Continue',
                     isEnabled: registerNotifier.enableButtonGetter,
                     onPressed: () {
-                      // _formKey.currentState!.validate();
                       if (registerNotifier.enableButtonGetter == true) {
                         FNavigator.displayBottomSheet(context, VerifyEmail());
                       }
