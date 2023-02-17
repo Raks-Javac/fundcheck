@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
+import 'package:fundcheck/src/features/authentication/register/views/register_v.dart';
 
 import '../../../app_level_locator/provider_locator.dart';
 import '../../../core/provider/theme/theme_provider.dart';
@@ -17,8 +19,9 @@ class OnBoardingView extends ConsumerWidget {
     ref.watch(themeProvider);
     final theme = Theme.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
-        margin: const EdgeInsets.symmetric(vertical: 30),
+        margin: const EdgeInsets.symmetric(vertical: 30, horizontal: 15),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -45,10 +48,15 @@ class OnBoardingView extends ConsumerWidget {
                 ],
               ),
               addVerticalSpacing(70),
+              // FPrimaryButton(onClick: (){}, label: 'Open an account',),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                  child: FWIdgetsPrimaryButton(
-                      buttonTitle: "Open an account", onPressed: () {})),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: 
+                   FWIdgetsPrimaryButton(
+                        buttonTitle: 'Open an account',
+                        onPressed: () => FNavigator.navigateToRoute(
+                             OpenAccount())),
+              ),
               addVerticalSpacing(10),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),

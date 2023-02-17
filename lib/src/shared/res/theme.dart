@@ -23,7 +23,6 @@ abstract class FTheme {
       ),
     );
   }
-
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: FColors.darkModeBackgroundColor,
