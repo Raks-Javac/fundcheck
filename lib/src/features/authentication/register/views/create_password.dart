@@ -247,7 +247,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                             if (_formKey.currentState!.validate()) {
                               _opacityEnabled
                                   ? FNavigator.displayBottomSheet(
-                                      context, SuccessView())
+                                      context, const SuccessView())
                                   : null;
                             }
                           }),
