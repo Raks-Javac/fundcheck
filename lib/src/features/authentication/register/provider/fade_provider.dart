@@ -4,11 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/utils/validators/f_validators.dart';
 
 final registerProvider = StateNotifierProvider((ref) {
-  return RegisterProvider(OpenAccountValidator());
+  return RegisterProvider();
 });
 
 class RegisterProvider extends StateNotifier<OpenAccountValidator> {
-  RegisterProvider(super.state);
+  RegisterProvider() : super(OpenAccountValidator());
 
   static bool buttonEnabled = false;
   bool get enableButtonGetter => buttonEnabled;
@@ -37,10 +37,10 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
   firstNameIsValidated(String val) {
     bool checker = FCheckValidator.validateName(val) == null ? true : false;
     if (checker == true) {
-      state = OpenAccountValidator(firstName: true);
+      state = state.copyWith(firstName: true);
       firstNameVal = state.firstName;
     } else {
-      state = OpenAccountValidator(firstName: false);
+      state = state.copyWith(firstName: false);
       firstNameVal = state.firstName;
     }
   }
@@ -48,10 +48,10 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
   lastNameIsValidated(String val) {
     bool checker = FCheckValidator.validateName(val) == null ? true : false;
     if (checker == true) {
-      state = OpenAccountValidator(lastname: true);
+      state = state.copyWith(lastname: true);
       lastNameVal = state.lastname;
     } else {
-      state = OpenAccountValidator(lastname: false);
+      state = state.copyWith(lastname: false);
       lastNameVal = state.lastname;
     }
   }
@@ -59,10 +59,10 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
   emailIsValidated(String val) {
     bool checker = FCheckValidator.validateEmail(val) == null ? true : false;
     if (checker == true) {
-      state = OpenAccountValidator(email: true);
+      state = state.copyWith(email: true);
       emailVal = state.email;
     } else {
-      state = OpenAccountValidator(email: false);
+      state = state.copyWith(email: false);
       emailVal = state.email;
     }
   }
@@ -78,9 +78,6 @@ class OpenAccountValidator {
   bool email;
   bool phoneNumber;
   bool button;
-  bool get firstNameGetter {
-    return firstName;
-  }
 
   OpenAccountValidator(
       {this.email = false,
@@ -88,4 +85,19 @@ class OpenAccountValidator {
       this.lastname = false,
       this.phoneNumber = false,
       this.button = false});
+
+  OpenAccountValidator copyWith({
+    bool? firstName,
+    bool? lastname,
+    bool? email,
+    bool? phoneNumber,
+    bool? button,
+  }) {
+    return OpenAccountValidator(
+        firstName: firstName ?? this.firstName,
+        email: email ?? this.email,
+        lastname: lastname ?? this.lastname,
+        button: button ?? this.button,
+        phoneNumber: phoneNumber ?? this.phoneNumber);
+  }
 }
