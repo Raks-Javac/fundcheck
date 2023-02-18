@@ -61,71 +61,72 @@ class FAuthTField extends StatelessWidget {
             elevation: 0,
             shadowColor: FColors.black.withOpacity(0.4),
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            child: Opacity(
-              opacity: (useOpacityForValidation == true)
-                  ? (isFieldValidated == true)
-                      ? 1
-                      : 0.5
-                  : 1,
-              child: TextFormField(
-                autovalidateMode: AutovalidateMode.always,
-                maxLengthEnforcement: MaxLengthEnforcement.none,
-                enabled: isEnabled,
-                onTap: onTap,
-                // maxLength: maxLength,
-                onSaved: onSaved,
-                controller: textEditingController!,
-                cursorColor: context.theme.textTheme.bodyLarge?.color,
-                cursorWidth: 0.7,
-                keyboardType: keyboardType,
-                obscureText: obscureText ?? false,
-                onChanged: (text) {
-                  if (onChanged != null) onChanged!(text);
-                },
-                validator: validator,
-                inputFormatters: [
-                  formatter ?? FilteringTextInputFormatter.singleLineFormatter
-                ],
-                style: theme.textTheme.bodySmall!.copyWith(fontSize: 14.sp),
+            child: TextFormField(
+              autovalidateMode: AutovalidateMode.always,
+              maxLengthEnforcement: MaxLengthEnforcement.none,
+              enabled: isEnabled,
+              onTap: onTap,
+              // maxLength: maxLength,
+              onSaved: onSaved,
+              controller: textEditingController!,
+              cursorColor: context.theme.textTheme.bodyLarge?.color,
+              cursorWidth: 0.7,
+              keyboardType: keyboardType,
+              obscureText: obscureText ?? false,
+              onChanged: (text) {
+                if (onChanged != null) onChanged!(text);
+              },
+              validator: validator,
+              inputFormatters: [
+                formatter ?? FilteringTextInputFormatter.singleLineFormatter
+              ],
+              style: theme.textTheme.bodySmall!.copyWith(fontSize: 14.sp),
 
-                decoration: InputDecoration(
-                    errorStyle: theme.textTheme.bodySmall?.copyWith(
-                      color: theme.colorScheme.error,
-                      fontSize: 10.sp,
-                    ),
-                    hintText: hintText,
-                    contentPadding: const EdgeInsets.only(
-                      left: 15.0,
-                      top: 19.0,
-                    ),
-                    // prefixIcon: Padding(
-                    //     padding: const EdgeInsets.all(13.0), child: prefixIcon),
-                    suffixIcon: suffixIcon,
-                    disabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: theme.textTheme.bodyLarge!.color!,
-                            width: 1.5),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0))),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: theme.textTheme.bodyLarge!.color!,
-                            width: 1.5),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0))),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: theme.textTheme.bodyLarge!.color!,
-                            width: 1.5),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0))),
-                    enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: theme.textTheme.bodyLarge!.color!,
-                            width: 1.5),
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(5.0)))),
-              ),
+              decoration: InputDecoration(
+                  errorStyle: theme.textTheme.bodySmall?.copyWith(
+                    color: theme.colorScheme.error,
+                    fontSize: 10.sp,
+                  ),
+                  hintText: hintText,
+                  contentPadding: const EdgeInsets.only(
+                    left: 15.0,
+                    top: 19.0,
+                  ),
+                  // prefixIcon: Padding(
+                  //     padding: const EdgeInsets.all(13.0), child: prefixIcon),
+                  suffixIcon: suffixIcon,
+                  disabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: isFieldValidated == true
+                              ? theme.textTheme.bodyLarge!.color!
+                              : FColors.primaryGrey,
+                          width: 1.5),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5.0))),
+                  border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: isFieldValidated == true
+                            ? theme.textTheme.bodyLarge!.color!
+                            : FColors.primaryGrey,
+                      ),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5.0))),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: isFieldValidated == true
+                              ? theme.textTheme.bodyLarge!.color!
+                              : FColors.primaryGrey,
+                          width: 1.5),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5.0))),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: isFieldValidated == true
+                              ? theme.textTheme.bodyLarge!.color!
+                              : FColors.primaryGrey,
+                          width: 1.5),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(5.0)))),
             ),
           ),
         )

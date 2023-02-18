@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
-import '../../../../core/utils/validators/f_validators.dart';
 import '../../../../shared/res/res.dart';
 import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/app_bar/primary_app_bar.dart';
@@ -36,18 +35,18 @@ class OpenAccount extends ConsumerWidget {
                 children: [
                   FAuthTField(
                     useOpacityForValidation: true,
-                    isFieldValidated: registerNotifier.enableButtonGetter,
+                    isFieldValidated:
+                        ref.watch(registerProvider.notifier).firstNameValGetter,
                     label: 'First name',
                     hintText: 'Enter your first name',
                     textEditingController: registerNotifier.firstNameController,
-                    validator: (value) => FCheckValidator.validateName(value!),
                     onChanged: (val) {
                       registerNotifier.checkTextField(val);
                     },
                   ),
                   addVertSpace(20),
                   FAuthTField(
-                    isFieldValidated: registerNotifier.enableButtonGetter,
+                    isFieldValidated: registerNotifier.lastNameValGetter,
                     useOpacityForValidation: true,
                     label: 'Last name',
                     hintText: 'Enter your first name',
@@ -55,31 +54,27 @@ class OpenAccount extends ConsumerWidget {
                     onChanged: (val) {
                       registerNotifier.checkTextField(val);
                     },
-                    validator: (value) => FCheckValidator.validateName(value!),
                   ),
                   addVertSpace(20),
                   FAuthTField(
-                    isFieldValidated: registerNotifier.enableButtonGetter,
+                    isFieldValidated: registerNotifier.emailValGetter,
                     useOpacityForValidation: true,
                     label: 'Email address',
                     hintText: 'fundcheck@gmail.com',
                     textEditingController: registerNotifier.emailController,
                     keyboardType: TextInputType.emailAddress,
-                    validator: (value) => FCheckValidator.validateEmail(value!),
                     onChanged: (val) {
                       registerNotifier.checkTextField(val);
                     },
                   ),
                   addVertSpace(20),
                   FAuthTField(
-                    isFieldValidated: registerNotifier.enableButtonGetter,
+                    isFieldValidated: registerNotifier.phoneNumberValGetter,
                     useOpacityForValidation: true,
                     label: 'Phone number',
                     hintText: 'Enter your phone number',
                     textEditingController: registerNotifier.phoneController,
                     keyboardType: TextInputType.number,
-                    validator: (val) =>
-                        FCheckValidator.validatePhoneNumber(val!),
                     onChanged: (val) {
                       registerNotifier.checkTextField(val);
                     },
@@ -89,6 +84,7 @@ class OpenAccount extends ConsumerWidget {
                     buttonTitle: 'Continue',
                     isEnabled: registerNotifier.enableButtonGetter,
                     onPressed: () {
+                      print(registerNotifier.firstNameValGetter);
                       if (registerNotifier.enableButtonGetter == true) {
                         FNavigator.displayBottomSheet(context, VerifyEmail());
                       }
