@@ -38,10 +38,10 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
     bool checker = FCheckValidator.validateName(val) == null ? true : false;
     if (checker == true) {
       state = state.copyWith(firstName: true);
-      firstNameVal = state.firstName;
+      firstNameVal = state.firstName!;
     } else {
       state = state.copyWith(firstName: false);
-      firstNameVal = state.firstName;
+      firstNameVal = state.firstName!;
     }
   }
 
@@ -49,10 +49,10 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
     bool checker = FCheckValidator.validateName(val) == null ? true : false;
     if (checker == true) {
       state = state.copyWith(lastname: true);
-      lastNameVal = state.lastname;
+      lastNameVal = state.lastname!;
     } else {
       state = state.copyWith(lastname: false);
-      lastNameVal = state.lastname;
+      lastNameVal = state.lastname!;
     }
   }
 
@@ -60,31 +60,39 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
     bool checker = FCheckValidator.validateEmail(val) == null ? true : false;
     if (checker == true) {
       state = state.copyWith(email: true);
-      emailVal = state.email;
+      emailVal = state.email!;
     } else {
       state = state.copyWith(email: false);
-      emailVal = state.email;
+      emailVal = state.email!;
     }
   }
 
-  bool numberIsValidated(String val) {
-    return FCheckValidator.validatePhoneNumber(val) == null ? true : false;
+  numberIsValidated(String val) {
+    bool checker =
+        FCheckValidator.validatePhoneNumber(val) == null ? true : false;
+    if (checker == true) {
+      state = state.copyWith(phoneNumber: true);
+      phoneNumberVal = state.phoneNumber!;
+    } else {
+      state = state.copyWith(phoneNumber: false);
+      phoneNumberVal = state.phoneNumber!;
+    }
   }
 }
 
 class OpenAccountValidator {
-  bool firstName;
-  bool lastname;
-  bool email;
-  bool phoneNumber;
-  bool button;
+  bool? firstName;
+  bool? lastname;
+  bool? email;
+  bool? phoneNumber;
+  bool? button;
 
   OpenAccountValidator(
-      {this.email = false,
-      this.firstName = false,
-      this.lastname = false,
-      this.phoneNumber = false,
-      this.button = false});
+      {this.email,
+      this.firstName,
+      this.lastname,
+      this.phoneNumber,
+      this.button});
 
   OpenAccountValidator copyWith({
     bool? firstName,

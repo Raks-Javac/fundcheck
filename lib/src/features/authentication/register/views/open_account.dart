@@ -41,7 +41,7 @@ class OpenAccount extends ConsumerWidget {
                     hintText: 'Enter your first name',
                     textEditingController: registerNotifier.firstNameController,
                     onChanged: (val) {
-                      registerNotifier.checkTextField(val);
+                      registerNotifier.firstNameIsValidated(val);
                     },
                   ),
                   addVertSpace(20),
@@ -52,7 +52,7 @@ class OpenAccount extends ConsumerWidget {
                     hintText: 'Enter your first name',
                     textEditingController: registerNotifier.lastNameController,
                     onChanged: (val) {
-                      registerNotifier.checkTextField(val);
+                      registerNotifier.lastNameIsValidated(val);
                     },
                   ),
                   addVertSpace(20),
@@ -64,7 +64,7 @@ class OpenAccount extends ConsumerWidget {
                     textEditingController: registerNotifier.emailController,
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (val) {
-                      registerNotifier.checkTextField(val);
+                      registerNotifier.emailIsValidated(val);
                     },
                   ),
                   addVertSpace(20),
@@ -76,7 +76,7 @@ class OpenAccount extends ConsumerWidget {
                     textEditingController: registerNotifier.phoneController,
                     keyboardType: TextInputType.number,
                     onChanged: (val) {
-                      registerNotifier.checkTextField(val);
+                      registerNotifier.numberIsValidated(val);
                     },
                   ),
                   const Spacer(),
