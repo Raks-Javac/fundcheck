@@ -27,9 +27,12 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
   static bool phoneNumberVal = false;
   bool get phoneNumberValGetter => phoneNumberVal;
 
-  void checkTextField(String currentInputtedValue) {
-    firstNameIsValidated(currentInputtedValue);
-    emailIsValidated(currentInputtedValue);
+  void checkTextField() {
+    if (firstNameVal && lastNameVal && emailVal && phoneNumberVal) {
+      buttonEnabled = true;
+    } else {
+      buttonEnabled = false;
+    }
   }
 
   //validate and bool check
@@ -43,6 +46,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       state = state.copyWith(firstName: false);
       firstNameVal = state.firstName!;
     }
+    checkTextField();
   }
 
   lastNameIsValidated(String val) {
@@ -54,6 +58,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       state = state.copyWith(lastname: false);
       lastNameVal = state.lastname!;
     }
+    checkTextField();
   }
 
   emailIsValidated(String val) {
@@ -65,6 +70,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       state = state.copyWith(email: false);
       emailVal = state.email!;
     }
+    checkTextField();
   }
 
   numberIsValidated(String val) {
@@ -77,6 +83,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       state = state.copyWith(phoneNumber: false);
       phoneNumberVal = state.phoneNumber!;
     }
+    checkTextField();
   }
 }
 
