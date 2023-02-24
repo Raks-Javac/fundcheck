@@ -6,7 +6,6 @@ import 'package:fundcheck/src/features/authentication/widget/check_validate.dart
 import 'package:fundcheck/src/shared/res/res.dart';
 import 'package:fundcheck/src/shared/res/ui_helper.dart';
 import 'package:fundcheck/src/shared/textfield/auth_textfield.dart';
-import 'package:fundcheck/src/shared/validators/f_validators.dart';
 import 'package:fundcheck/src/shared/widgets/buttons/primary_button.dart';
 
 class CreatePassword extends StatefulWidget {
@@ -17,7 +16,7 @@ class CreatePassword extends StatefulWidget {
 }
 
 class _CreatePasswordState extends State<CreatePassword> {
-  TextEditingController _passwordController1 = TextEditingController();
+  final TextEditingController _passwordController1 = TextEditingController();
 
   final TextEditingController _passwordController2 = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -49,18 +48,20 @@ class _CreatePasswordState extends State<CreatePassword> {
     });
   }
 
-  String password = '';
-  String confirmPassword = '';
-  bool isPasswordLength = false;
+  
+   bool isPasswordLength = false;
    bool hasPasswordOneNumber = false;
    bool specialCharacter = false;
    bool equalPassword = false;
    bool passwordCheck = false;
+    String password = '';
+    String confirmPassword = '';
 
   onPasswordChange(String password){
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');
+    
 
     setState(() {
        isPasswordLength = false;
@@ -75,13 +76,11 @@ class _CreatePasswordState extends State<CreatePassword> {
       if(specialRegex.hasMatch(password)){
         specialCharacter = true;
       }
-      passwordCheck = false;
-     if(confirmPassword == password){
-       passwordCheck = true;
+      equalPassword = false;
+     if(password == confirmPassword){
+       equalPassword = true;
      }
     });
-    
-
   }
   @override
   Widget build(BuildContext context) {
@@ -110,26 +109,26 @@ class _CreatePasswordState extends State<CreatePassword> {
           key: _formKey,
           child: Column(
             children: [
+              const FAuthLabel(label: 'Password'),
               Opacity(
-                opacity: _opacityEnabled ? 1 : 0.5,
+                opacity: _opacityEnabled ? 1 : 0.2,
                 child: FAuthTField(
-                  label: 'Password',
                   obscureText: _obscure1,
                   textEditingController: _passwordController1,
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return 'Please enter a password';
-                    }
-                    if (val.length < 6) {
-                      return 'Password must be 6 character';
-                    }
-                    return null;
-                  },
+                  // validator: (val) {
+                  //   if (val == null || val.isEmpty) {
+                  //     return 'Please enter a password';
+                  //   }
+                  //   if (val.length < 6) {
+                  //     return 'Password must be 6 character';
+                  //   }
+                  //   return null;
+                  // },
                   onChanged: (value) {
                     checkOpacity();
                     onPasswordChange(value);
                     setState(() {
-                      password = value!;
+                       confirmPassword = value!;
                     });
                   },
                   hintText: 'Enter your password',
@@ -152,22 +151,22 @@ class _CreatePasswordState extends State<CreatePassword> {
                 ),
               ),
               addVertSpace(20),
+              const FAuthLabel(label: 'Confirm password'),
               Opacity(
-                opacity: _opacityEnabled ? 1 : 0.5,
+                opacity: _opacityEnabled ? 1 : 0.2,
                 child: FAuthTField(
-                  label: 'Password',
                   obscureText: _obscure2,
                   textEditingController: _passwordController2,
                   hintText: 'Enter your password',
-                  validator: (val) {
-                    if (val == null || val.isEmpty) {
-                      return 'Please enter a password';
-                    }
-                    if (val.length < 6) {
-                      return 'Password must be 6 character';
-                    }
-                    return null;
-                  },
+                  // validator: (val) {
+                  //   if (val == null || val.isEmpty) {
+                  //     return 'Please enter a password';
+                  //   }
+                  //   if (val.length < 6) {
+                  //     return 'Password must be 6 character';
+                  //   }
+                  //   return null;
+                  // },
                   // onSaved: (val){
                   //   confirmPassword = val!;
                   // },
@@ -175,7 +174,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                     checkOpacity();
                      onPasswordChange(val);
                     setState(() {
-                      password = val!;
+                       password = val!;
                     });
                   },
                   suffixIcon: GestureDetector(
@@ -197,38 +196,55 @@ class _CreatePasswordState extends State<CreatePassword> {
                 ),
               ),
               addVertSpace(20),
+              Row(
+                children: [
+                  Image.asset('assets/images/info-circle.png', height: 17.sp,),
+                  addHorizonSpace(7),
+                  Text('Your password must have:', style: theme.textTheme.bodyMedium!.copyWith(color: FColors.primaryOrange),)
+                ],
+              ),
+              addVertSpace(15),
               Column(
                 children: [
                   ValPassword(
                     theme: theme,
                     label: 'Six characters',
+                     borderColor: passwordCheck ? FColors.primaryGrey : Colors.white,
                     color: isPasswordLength ? FColors.primaryGreen : Colors.transparent,
                   ),
+                   addVertSpace(10),
                   ValPassword(
                     theme: theme,
+                      borderColor: passwordCheck ? FColors.primaryGrey : Colors.white,
                     label: 'One alphabet and number',
                      color: hasPasswordOneNumber ? FColors.primaryGreen : Colors.transparent,
                   ),
+                   addVertSpace(10),
                   ValPassword(
                     theme: theme,
+                      borderColor: passwordCheck ? FColors.primaryGrey : Colors.white,
                     label: 'One upper case and lower case alphabet',
                      color: hasPasswordOneNumber ? FColors.primaryGreen : Colors.transparent,
                   ),
+                   addVertSpace(10),
                   ValPassword(
                     theme: theme,
+                    borderColor: passwordCheck ? FColors.primaryGrey : Colors.white,
                     label: 'One special character(@ # \$ *)',
                      color: specialCharacter ? FColors.primaryGreen : Colors.transparent,
                   ),
+                   addVertSpace(10),
                   ValPassword(
                     theme: theme,
+                  borderColor: passwordCheck ? FColors.primaryGrey : Colors.white,
                     label: 'Equal password and confirm password',
-                     color: passwordCheck ? FColors.primaryGreen : Colors.transparent,
+                     color: equalPassword ? FColors.primaryGreen : Colors.transparent,
                   ),
                 ],
               ),
-              Spacer(),
+            const  Spacer(),
               Opacity(
-                opacity: _opacityEnabled ? 1 : 0.5,
+                opacity: _opacityEnabled ? 1 : 0.2,
                 child: FWIdgetsPrimaryButton(
                     buttonTitle: 'Create account',
                     onPressed: () {
