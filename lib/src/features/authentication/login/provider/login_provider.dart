@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fundcheck/src/core/utils/biometrics_fc.dart';
 import 'package:fundcheck/src/core/utils/validators/f_validators.dart';
+import 'package:local_auth/local_auth.dart';
 
 final loginProvider = AutoDisposeStateNotifierProvider((ref) {
   return LoginProvider();
@@ -19,6 +21,9 @@ class LoginProvider extends StateNotifier<LoginInterface> {
 
   static bool buttonEnabled = false;
   bool get enableButtonGetter => buttonEnabled;
+
+  static bool isFaceIDabled = false;
+  bool get enableFaceIDGetter => buttonEnabled;
 
   togglePasswordField() {
     state = state.copyWith(showPasswordCopy: !showPassword);
@@ -58,11 +63,25 @@ class LoginProvider extends StateNotifier<LoginInterface> {
       buttonEnabled = false;
     }
   }
+
+  checkDeviceOnInit() async {
+    List<BiometricType> listOfBioTypes =
+        await FBiometrics.auth.getAvailableBiometrics();
+
+    if (listOfBioTypes.contains(BiometricType.face)) {
+      state = state.copyWith(isFaceidCopy: true);
+      isFaceIDabled = state.isFaceId!;
+    } else {
+      state = state.copyWith(isFaceidCopy: false);
+      isFaceIDabled = state.isFaceId!;
+    }
+  }
 }
 
 class LoginInterface {
   bool? emailPhoneNumber;
   bool? password;
+  bool? isFaceId;
   bool? isButtonEnabled;
   bool? showPassword;
   LoginInterface({
@@ -70,6 +89,7 @@ class LoginInterface {
     this.emailPhoneNumber,
     this.password,
     this.showPassword,
+    this.isFaceId,
   });
 
   LoginInterface copyWith({
@@ -77,12 +97,13 @@ class LoginInterface {
     bool? passwordCopy,
     bool? isButtonEnabledCopy,
     bool? showPasswordCopy,
+    bool? isFaceidCopy,
   }) {
     return LoginInterface(
-      isButtonEnabled: isButtonEnabledCopy ?? isButtonEnabled,
-      emailPhoneNumber: emailPhoneNumberCopy ?? emailPhoneNumber,
-      password: passwordCopy ?? password,
-      showPassword: showPasswordCopy ?? showPassword,
-    );
+        isButtonEnabled: isButtonEnabledCopy ?? isButtonEnabled,
+        emailPhoneNumber: emailPhoneNumberCopy ?? emailPhoneNumber,
+        password: passwordCopy ?? password,
+        showPassword: showPasswordCopy ?? showPassword,
+        isFaceId: isFaceidCopy ?? isFaceId);
   }
 }
