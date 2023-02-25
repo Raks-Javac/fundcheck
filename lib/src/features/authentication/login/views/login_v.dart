@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,6 +6,7 @@ import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
 import 'package:fundcheck/src/core/utils/validators/f_validators.dart';
 import 'package:fundcheck/src/features/authentication/login/provider/login_provider.dart';
 import 'package:fundcheck/src/features/authentication/login/views/acct_v_email.dart';
+import 'package:fundcheck/src/features/authentication/register/views/open_account.dart';
 
 import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/res.dart';
@@ -186,7 +188,9 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       ),
                     ),
                     TextSpan(
-                      //  recognizer: (),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () =>
+                            FNavigator.navigateToRoute(const OpenAccount()),
                       text: "  Register",
                       style: context.theme.textTheme.labelLarge?.copyWith(
                         fontSize: 13.sp,
