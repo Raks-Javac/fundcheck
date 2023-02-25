@@ -23,7 +23,7 @@ class LoginProvider extends StateNotifier<LoginInterface> {
   bool get enableButtonGetter => buttonEnabled;
 
   static bool isFaceIDabled = false;
-  bool get enableFaceIDGetter => buttonEnabled;
+  bool get enableFaceIDGetter => isFaceIDabled;
 
   togglePasswordField() {
     state = state.copyWith(showPasswordCopy: !showPassword);
