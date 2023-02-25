@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fundcheck/src/features/authentication/login/views/login_v.dart';
 
 import '../../../app_level_locator/provider_locator.dart';
 import '../../../core/navigation/navigation_helpers.dart';
@@ -61,7 +62,10 @@ class OnBoardingView extends ConsumerWidget {
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: FWidgetsBorderedButton(
-                      buttonTitle: "Log in", onPressed: () {}))
+                      buttonTitle: "Log in",
+                      onPressed: () {
+                        FNavigator.navigateToRoute(const LoginView());
+                      }))
             ],
           ),
         ),

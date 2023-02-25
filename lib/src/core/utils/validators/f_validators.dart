@@ -1,8 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'input_limit.dart';
 import 'package:intl/intl.dart';
+
+import 'input_limit.dart';
 
 class FCheckValidator {
   static String getFormattedDate(DateTime date) {
@@ -66,6 +67,29 @@ class FCheckValidator {
 
   static bool containsSpecialCharater(String password) {
     return password.contains(RegExp(r'\W')) ? true : false;
+  }
+
+  static String? validateNormalPassword(String password) {
+    if (password.isEmpty) {
+      return "Password cannot be empty";
+    }
+
+    if (password.length <= GeneralLimits.passwordLength) {
+      return "Password length must be at ${GeneralLimits.passwordLength}";
+    }
+
+    // if (!password.contains(RegExp(r'[A-Z]'))) {
+    //   return "Password must contain upper case";
+    // }
+
+    // if (!password.contains(RegExp(r'\W'))) {
+    //   return "Password must contain a symbol";
+    // }
+
+    // if (!password.contains(RegExp(r'[\d]'))) {
+    //   return "Password must contain a number";
+    // }
+    return null;
   }
 
   static String validatePassword(String password, String confirmPassword) {
@@ -182,4 +206,41 @@ class FCheckValidator {
       return true;
     }
   }
+
+  String? validatePhoneNumberEmail(String? value) {
+    if (value != null) {
+      if (value.isEmpty) {
+        return emptyEmailField(fieldType: "Phone number");
+      }
+      if (value[0].contains("0")) {
+        final regExp = RegExp(phoneNumberRegex);
+        print(regExp.hasMatch(value));
+        if (regExp.hasMatch(value)) {
+          return null;
+        }
+        if (value[0].contains("0") && value.length == 11) {
+          return null;
+        }
+        return invalidPhoneNumberField;
+      }
+      // Regex for email validation
+      final regExp = RegExp(emailRegex);
+      if (regExp.hasMatch(value)) {
+        return null;
+      }
+      return invalidEmailField;
+    } else {
+      return null;
+    }
+  }
+
+  static String invalidEmailField =
+      "Email provided isn't valid.Try another email address";
+  static String phoneNumberRegex = r'0[789][01]\d{8}';
+  static String invalidPhoneNumberField =
+      "Number provided isn't valid.Try another phone number";
+  static String emailRegex =
+      '[a-zA-Z0-9+._%-+]{1,256}\\@[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}(\\.[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25})+';
+  String emptyEmailField({String fieldType = "Email"}) =>
+      '$fieldType field cannot be empty!';
 }
