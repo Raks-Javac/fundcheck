@@ -9,12 +9,13 @@ class FWidgetsRenderSvg extends StatelessWidget {
   final double? width;
   final Color? iconColor;
   final double? height;
-  const FWidgetsRenderSvg(
-      {super.key,
-      required this.iconPath,
-      this.height,
-      this.width,
-      this.iconColor});
+  const FWidgetsRenderSvg({
+    super.key,
+    required this.iconPath,
+    this.height,
+    this.width,
+    this.iconColor,
+  });
 
   @override
   Widget build(BuildContext context) {

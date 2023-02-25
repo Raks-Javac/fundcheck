@@ -1,22 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
 import 'package:fundcheck/src/core/utils/validators/f_validators.dart';
 import 'package:fundcheck/src/features/authentication/login/provider/login_provider.dart';
+import 'package:fundcheck/src/features/authentication/login/views/acct_v_email.dart';
 
 import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/res.dart';
 import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/app_bar/primary_app_bar.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
-import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 
-class LoginView extends ConsumerWidget {
+class LoginView extends ConsumerStatefulWidget {
   const LoginView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends ConsumerState<LoginView> {
+  @override
+  void initState() {
+    ref.read(loginProvider.notifier).checkDeviceOnInit();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.watch(loginProvider);
     final loginNotifier = ref.watch(loginProvider.notifier);
     return Scaffold(
@@ -25,7 +37,7 @@ class LoginView extends ConsumerWidget {
       body: Column(
         children: [
           const FWidgetsPrimaryAppBar(
-            title: "Login",
+            title: "Log In",
             leadingIcon: SizedBox.shrink(),
           ),
           Expanded(
@@ -140,25 +152,29 @@ class LoginView extends ConsumerWidget {
                       ),
                     ),
                   ),
+                  UIHelper.verticalSpaceLarge,
+                  loginNotifier.enableFaceIDGetter
+                      ? Image.asset(
+                          FIcons.faceId,
+                          width: 48,
+                          height: 48,
+                        )
+                      : Image.asset(
+                          FIcons.fingerPrint,
+                          width: 48,
+                          height: 48,
+                        ),
                   const Spacer(),
                   FWIdgetsPrimaryButton(
-                    buttonTitle: 'Continue',
+                    buttonTitle: 'Log In',
                     isEnabled: loginNotifier.enableButtonGetter,
                     onPressed: () {
                       print(loginNotifier.emailPhoneValGetter);
                       if (loginNotifier.enableButtonGetter == true) {
-                        // FNavigator.displayBottomSheet(context, VerifyEmail());
+                        FNavigator.displayBottomSheet(
+                            context, AccountVerifyEmail());
                       }
                     },
-                    icon: const Padding(
-                      padding: EdgeInsets.only(left: 10.0),
-                      child: Center(
-                        child: FWidgetsRenderSvg(
-                          iconColor: FColors.white,
-                          iconPath: FIcons.arrowRight,
-                        ),
-                      ),
-                    ),
                   ),
                   UIHelper.verticalSpaceSmall,
                   RichText(
