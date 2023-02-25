@@ -64,54 +64,54 @@ class _OpenAccountState extends State<OpenAccount> {
             const EdgeInsets.only(left: 20, right: 20, top: 30, bottom: 70),
         child: Column(
           children: [
+            const FAuthLabel(label: 'First name'),
             Opacity(
-              opacity: _isButtonEnabled ? 1 : 0.5,
+              opacity: _isButtonEnabled ? 1 : 0.2,
               child: FAuthTField(
-                label: 'First name',
                 hintText: 'Enter your first name',
                 textEditingController: _firstNameController,
-                validator: (value) => FCheckValidator.validateName(value!),
+                // validator: (value) => FCheckValidator.validateName(value!),
                 onChanged: (_) {
                   _checkTextField();
                 },
               ),
             ),
             addVertSpace(20),
+            const FAuthLabel(label: 'Last name'),
             Opacity(
-              opacity: _isButtonEnabled ? 1 : 0.5,
+              opacity: _isButtonEnabled ? 1 : 0.2,
               child: FAuthTField(
-                label: 'Last name',
-                hintText: 'Enter your first name',
+                hintText: 'Enter your last name',
                 textEditingController: _lastNameController,
                 onChanged: (_) {
                   _checkTextField();
                 },
-                validator: (value) => FCheckValidator.validateName(value!),
+                // validator: (value) => FCheckValidator.validateName(value!),
               ),
             ),
             addVertSpace(20),
+            const FAuthLabel(label: 'Email address'),
             Opacity(
-              opacity: _isButtonEnabled ? 1 : 0.5,
+              opacity: _isButtonEnabled ? 1 : 0.2,
               child: FAuthTField(
-                label: 'Email address',
                 hintText: 'fundcheck@gmail.com',
                 textEditingController: _emailController,
                 keyboardType: TextInputType.emailAddress,
-                validator: (value) => FCheckValidator.validateEmail(value!),
+                // validator: (value) => FCheckValidator.validateEmail(value!),
                 onChanged: (_) {
                   _checkTextField();
                 },
               ),
             ),
             addVertSpace(20),
+            const FAuthLabel(label: 'Phone number'),
             Opacity(
-              opacity: _isButtonEnabled ? 1 : 0.5,
+              opacity: _isButtonEnabled ? 1 : 0.2,
               child: FAuthTField(
-                label: 'Phone number',
                 hintText: 'Enter your phone number',
                 textEditingController: _phoneController,
                 keyboardType: TextInputType.number,
-                validator: (val) => FCheckValidator.validatePhoneNumber(val!),
+               // validator: (val) => FCheckValidator.validatePhoneNumber(val!),
                 onChanged: (_) {
                   _checkTextField();
                 },
@@ -119,7 +119,7 @@ class _OpenAccountState extends State<OpenAccount> {
             ),
             const Spacer(),
             Opacity(
-              opacity: _isButtonEnabled ? 1 : 0.5,
+              opacity: _isButtonEnabled ? 1 : 0.15,
               child: FWIdgetsPrimaryButton(
                 buttonTitle: 'Continue',
                 onPressed: () {

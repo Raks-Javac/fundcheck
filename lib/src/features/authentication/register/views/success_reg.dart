@@ -2,9 +2,7 @@
  import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
-import 'package:fundcheck/src/features/authentication/register/views/create_password.dart';
 import 'package:fundcheck/src/shared/res/ui_helper.dart';
-import 'package:fundcheck/src/shared/textfield/auth_textfield.dart';
 import 'package:fundcheck/src/shared/widgets/buttons/primary_button.dart';
 
 class SuccessView extends StatelessWidget {

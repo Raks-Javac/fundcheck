@@ -7,10 +7,12 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
   final String buttonTitle;
   final VoidCallback onPressed;
   final Widget? icon;
+  final Color? bgColor;
   const FWIdgetsPrimaryButton(
       {super.key,
       required this.buttonTitle,
       required this.onPressed,
+      this.bgColor,
       this.icon});
 
   @override
@@ -21,7 +23,7 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(4),
       ),
       onPressed: onPressed,
-      color: theme.primaryColor,
+      color: bgColor ?? theme.primaryColor,
       minWidth: MediaQuery.of(context).size.width,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 15.0),

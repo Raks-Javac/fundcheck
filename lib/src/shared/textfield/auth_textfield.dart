@@ -10,7 +10,6 @@ import 'package:fundcheck/src/shared/res/ui_helper.dart';
 class FAuthTField extends StatelessWidget {
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final String? label;
   final Function()? onTap;
   final String? hintText;
   final TextInputType? keyboardType;
@@ -24,7 +23,7 @@ class FAuthTField extends StatelessWidget {
   final int? maxLength;
   const FAuthTField({
     Key? key,
-    required this.label,
+  
     this.prefixIcon,
     this.maxLength,
     this.onTap,
@@ -46,13 +45,7 @@ class FAuthTField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label!,
-          style: theme.textTheme.bodyMedium!.copyWith(
-             // fontWeight: FontWeight.w900,
-              fontSize: screenAwareSize(22, context)),
-        ),
-        SizedBox(height: 3.h),
+       
         Padding(
           padding: const EdgeInsets.only(left: 2.0),
           child: SizedBox(
@@ -112,6 +105,30 @@ class FAuthTField extends StatelessWidget {
             ),
           ),
         )
+      ],
+    );
+  }
+}
+
+class FAuthLabel extends StatelessWidget {
+  const FAuthLabel({required this.label, super.key});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Column(
+      children: [
+         Align(
+           alignment: Alignment.centerLeft,
+           child: Text(
+            label,
+            style: theme.textTheme.bodyMedium!.copyWith(
+               // fontWeight: FontWeight.w900,
+                fontSize: screenAwareSize(22, context)),
+                 ),
+         ),
+        SizedBox(height: 3.h),
       ],
     );
   }

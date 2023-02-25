@@ -31,8 +31,8 @@ class VerifyEmail extends StatelessWidget {
               'We need to verify your email address so, we sent you a unique code. Please input the correct code to continue to continue with your registration',
               style: theme.textTheme.bodyMedium),
                addVertSpace(30),
+         const FAuthLabel(label: 'Code'),
           FAuthTField(
-            label: 'Code',
             textEditingController: _otpController,
           ),
           addVertSpace(15),
