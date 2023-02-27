@@ -106,7 +106,7 @@ class AccountVerifyCode extends StatelessWidget {
             buttonTitle: 'Continue',
             onPressed: () {
               FNavigator.popSheet();
-              displayBottomSheet(context, const ResetPassword());
+              // displayBottomSheet(context, const ResetPassword());
             },
             icon: const Padding(
               padding: EdgeInsets.only(left: 10.0),

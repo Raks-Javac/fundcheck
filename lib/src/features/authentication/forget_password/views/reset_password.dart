@@ -230,38 +230,82 @@ class _ResetPasswordState extends State<ResetPassword> {
                     addVertSpace(20),
                     Column(
                       children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/info-circle.png',
+                              height: 17.sp,
+                            ),
+                            addHorizonSpace(7),
+                            Text(
+                              'Your password must have:',
+                              style: context.theme.textTheme.bodyMedium!
+                                  .copyWith(color: FColors.primaryOrange),
+                            )
+                          ],
+                        ),
+                        addVertSpace(15),
                         ValPassword(
                           theme: context.theme,
                           label: 'Six characters',
+                          borderColor: isPasswordLength
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
+                              checkColor: isPasswordLength ? FColors.white
+                              : Colors.transparent,
                           color: isPasswordLength
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One alphabet and number',
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One upper case and lower case alphabet',
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                         borderColor: specialCharacter
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One special character(@ # \$ *)',
+                          checkColor: specialCharacter ? FColors.white
+                              : Colors.transparent,
                           color: specialCharacter
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: equalPassword
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'Equal password and confirm password',
-                          color: passwordCheck
+                          checkColor: equalPassword ? FColors.white
+                              : Colors.transparent,
+                          color: equalPassword
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),

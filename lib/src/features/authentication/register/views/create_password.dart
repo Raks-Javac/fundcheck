@@ -1,4 +1,7 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
@@ -51,36 +54,40 @@ class _CreatePasswordState extends State<CreatePassword> {
     });
   }
 
+  
+
+  bool isPasswordLength = false;
+   bool hasPasswordOneNumber = false;
+   bool specialCharacter = false;
+   bool equalPassword = false;
+   bool passwordCheck = false;
+   
   String password = '';
   String confirmPassword = '';
-  bool isPasswordLength = false;
-  bool hasPasswordOneNumber = false;
-  bool specialCharacter = false;
-  bool equalPassword = false;
-  bool passwordCheck = false;
 
-  onPasswordChange(String password) {
+  onPasswordChange(String password){
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');
+    
 
     setState(() {
-      isPasswordLength = false;
-      if (password.length >= 6) {
+       isPasswordLength = false;
+      if(password.length >= 6){
         isPasswordLength = true;
       }
       hasPasswordOneNumber = false;
-      if (numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)) {
+      if(numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)){
         hasPasswordOneNumber = true;
       }
       specialCharacter = false;
-      if (specialRegex.hasMatch(password)) {
+      if(specialRegex.hasMatch(password)){
         specialCharacter = true;
       }
-      passwordCheck = false;
-      if (confirmPassword == password) {
-        passwordCheck = true;
-      }
+      equalPassword = false;
+     if(password == confirmPassword){
+       equalPassword = true;
+     }
     });
   }
 
@@ -119,20 +126,20 @@ class _CreatePasswordState extends State<CreatePassword> {
                       useOpacityForValidation: true,
                       obscureText: _obscure1,
                       textEditingController: _passwordController1,
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (val.length < 6) {
-                          return 'Password must be 6 character';
-                        }
-                        return null;
-                      },
+                      // validator: (val) {
+                      //   if (val == null || val.isEmpty) {
+                      //     return 'Please enter a password';
+                      //   }
+                      //   if (val.length < 6) {
+                      //     return 'Password must be 6 character';
+                      //   }
+                      //   return null;
+                      // },
                       onChanged: (value) {
                         checkOpacity();
                         onPasswordChange(value);
                         setState(() {
-                          password = value!;
+                          confirmPassword = value!;
                         });
                       },
                       hintText: 'Enter your password',
@@ -157,19 +164,19 @@ class _CreatePasswordState extends State<CreatePassword> {
                     FAuthTField(
                       useOpacityForValidation: true,
                       isFieldValidated: _opacityEnabled,
-                      label: 'Password',
+                      label: 'Confirm Password',
                       obscureText: _obscure2,
                       textEditingController: _passwordController2,
                       hintText: 'Enter your password',
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (val.length < 6) {
-                          return 'Password must be 6 character';
-                        }
-                        return null;
-                      },
+                      // validator: (val) {
+                      //   if (val == null || val.isEmpty) {
+                      //     return 'Please enter a password';
+                      //   }
+                      //   if (val.length < 6) {
+                      //     return 'Password must be 6 character';
+                      //   }
+                      //   return null;
+                      // },
                       // onSaved: (val){
                       //   confirmPassword = val!;
                       // },
@@ -200,38 +207,82 @@ class _CreatePasswordState extends State<CreatePassword> {
                     addVertSpace(20),
                     Column(
                       children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/info-circle.png',
+                              height: 17.sp,
+                            ),
+                            addHorizonSpace(7),
+                            Text(
+                              'Your password must have:',
+                              style: context.theme.textTheme.bodyMedium!
+                                  .copyWith(color: FColors.primaryOrange),
+                            )
+                          ],
+                        ),
+                        addVertSpace(15),
                         ValPassword(
                           theme: context.theme,
                           label: 'Six characters',
+                          borderColor: isPasswordLength
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
+                              checkColor: isPasswordLength ? FColors.white
+                              : Colors.transparent,
                           color: isPasswordLength
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One alphabet and number',
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           label: 'One upper case and lower case alphabet',
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                         borderColor: specialCharacter
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One special character(@ # \$ *)',
+                          checkColor: specialCharacter ? FColors.white
+                              : Colors.transparent,
                           color: specialCharacter
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: equalPassword
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'Equal password and confirm password',
-                          color: passwordCheck
+                          checkColor: equalPassword ? FColors.white
+                              : Colors.transparent,
+                          color: equalPassword
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
@@ -262,3 +313,4 @@ class _CreatePasswordState extends State<CreatePassword> {
     );
   }
 }
+
