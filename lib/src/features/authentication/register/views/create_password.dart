@@ -295,7 +295,7 @@ class _CreatePasswordState extends State<CreatePassword> {
                           isEnabled: true,
                           buttonTitle: 'Create account',
                           onPressed: () {
-                            if (_formKey.currentState!.validate()) {
+                            if (_formKey.currentState!.validate()){
                               _opacityEnabled
                                   ? FNavigator.displayBottomSheet(
                                       context, const SuccessView())
