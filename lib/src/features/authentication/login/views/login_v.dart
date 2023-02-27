@@ -1,9 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
 import 'package:fundcheck/src/core/utils/validators/f_validators.dart';
+import 'package:fundcheck/src/features/authentication/forget_password/views/reset_password.dart';
 import 'package:fundcheck/src/features/authentication/login/provider/login_provider.dart';
 import 'package:fundcheck/src/features/authentication/login/views/acct_v_email.dart';
 import 'package:fundcheck/src/features/authentication/register/views/open_account.dart';
@@ -127,15 +130,19 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Forget Password",
-                                style: context.theme.textTheme.labelLarge
-                                    ?.copyWith(
-                                  fontSize: 13.sp,
-                                  color: loginNotifier.passwordValGetter
-                                      ? context
-                                          .theme.textTheme.bodyLarge!.color!
-                                      : FColors.primaryGrey,
+                             
+                              GestureDetector(
+                                onTap: ()=> FNavigator.navigateToRoute(const ResetPassword()),
+                                child: Text(
+                                  "Forget Password",
+                                  style: context.theme.textTheme.labelLarge
+                                      ?.copyWith(
+                                    fontSize: 13.sp,
+                                    color: loginNotifier.passwordValGetter
+                                        ? context
+                                            .theme.textTheme.bodyLarge!.color!
+                                        : FColors.primaryGrey,
+                                  ),
                                 ),
                               ),
                               SizedBox(
