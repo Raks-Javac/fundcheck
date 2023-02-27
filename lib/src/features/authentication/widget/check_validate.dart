@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fundcheck/src/shared/res/res.dart';
 import 'package:fundcheck/src/shared/res/ui_helper.dart';
 
 class ValPassword extends StatelessWidget {
