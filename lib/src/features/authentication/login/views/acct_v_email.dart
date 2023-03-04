@@ -46,7 +46,7 @@ class AccountVerifyEmail extends StatelessWidget {
                 child: Text(
                   'Account verification',
                   style: context.theme.textTheme.bodyLarge!
-                      .copyWith(fontWeight: FontWeight.bold),
+                      .copyWith(fontFamily: FStrings.monteserratSemiBold),
                 ),
               ),
             ],
