@@ -4,7 +4,7 @@ abstract class FColors {
   FColors._();
 
   static const Color whiteModeBackgroundColor = Color(0xFFFAFAFA);
-  static const Color darkModeBackgroundColor = Color(0xFF313132);
+  static const Color darkModeBackgroundColor = Color(0xFF202021);
   static const Color neutralWhite = Color(0xFFFFFFFF);
   static const Color neutralBlack = Color(0xFF1E1E1E);
   static const Color primaryBlue = Color(0xFF4E7EB9);
