@@ -24,6 +24,7 @@ class _ResetPasswordState extends State<ResetPassword> {
   final TextEditingController _passwordController1 = TextEditingController();
 
   final TextEditingController _passwordController2 = TextEditingController();
+  
   final _formKey = GlobalKey<FormState>();
 
   bool _obscure1 = true;
@@ -53,36 +54,37 @@ class _ResetPasswordState extends State<ResetPassword> {
     });
   }
 
+   bool isPasswordLength = false;
+   bool hasPasswordOneNumber = false;
+   bool specialCharacter = false;
+   bool equalPassword = false;
+   bool passwordCheck = false;
+   
   String password = '';
   String confirmPassword = '';
-  bool isPasswordLength = false;
-  bool hasPasswordOneNumber = false;
-  bool specialCharacter = false;
-  bool equalPassword = false;
-  bool passwordCheck = false;
 
-  onPasswordChange(String password) {
+  onPasswordChange(String password){
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
-    final specialRegex = RegExp(r'\W');
+    final specialRegex = RegExp(r'\W');   
 
     setState(() {
-      isPasswordLength = false;
-      if (password.length >= 6) {
+       isPasswordLength = false;
+      if(password.length >= 6){
         isPasswordLength = true;
       }
       hasPasswordOneNumber = false;
-      if (numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)) {
+      if(numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)){
         hasPasswordOneNumber = true;
       }
       specialCharacter = false;
-      if (specialRegex.hasMatch(password)) {
+      if(specialRegex.hasMatch(password)){
         specialCharacter = true;
       }
-      passwordCheck = false;
-      if (confirmPassword == password) {
-        passwordCheck = true;
-      }
+      equalPassword = false;
+     if(password == confirmPassword){
+       equalPassword = true;
+     }
     });
   }
 
@@ -121,20 +123,20 @@ class _ResetPasswordState extends State<ResetPassword> {
                       useOpacityForValidation: true,
                       obscureText: _obscure1,
                       textEditingController: _passwordController1,
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (val.length < 6) {
-                          return 'Password must be 6 character';
-                        }
-                        return null;
-                      },
+                      // validator: (val) {
+                      //   if (val == null || val.isEmpty) {
+                      //     return 'Please enter a password';
+                      //   }
+                      //   if (val.length < 6) {
+                      //     return 'Password must be 6 character';
+                      //   }
+                      //   return null;
+                      // },
                       onChanged: (value) {
                         checkOpacity();
                         onPasswordChange(value);
                         setState(() {
-                          password = value!;
+                          confirmPassword = value!;
                         });
                       },
                       hintText: 'Enter your password',
@@ -142,7 +144,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: GestureDetector(
-                            onTap: () {},
+                            onTap: ()=> toggle1(),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -178,15 +180,15 @@ class _ResetPasswordState extends State<ResetPassword> {
                       obscureText: _obscure2,
                       textEditingController: _passwordController2,
                       hintText: 'Enter your password',
-                      validator: (val) {
-                        if (val == null || val.isEmpty) {
-                          return 'Please enter a password';
-                        }
-                        if (val.length < 6) {
-                          return 'Password must be 6 character';
-                        }
-                        return null;
-                      },
+                      // validator: (val) {
+                      //   if (val == null || val.isEmpty) {
+                      //     return 'Please enter a password';
+                      //   }
+                      //   if (val.length < 6) {
+                      //     return 'Password must be 6 character';
+                      //   }
+                      //   return null;
+                      // },
                       // onSaved: (val){
                       //   confirmPassword = val!;
                       // },
@@ -200,7 +202,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: GestureDetector(
-                          onTap: () {},
+                          onTap: () => toggle2(),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -230,38 +232,82 @@ class _ResetPasswordState extends State<ResetPassword> {
                     addVertSpace(20),
                     Column(
                       children: [
+                        Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/info-circle.png',
+                              height: 17.sp,
+                            ),
+                            addHorizonSpace(7),
+                            Text(
+                              'Your password must have:',
+                              style: context.theme.textTheme.bodyMedium!
+                                  .copyWith(color: FColors.primaryOrange),
+                            )
+                          ],
+                        ),
+                        addVertSpace(15),
                         ValPassword(
                           theme: context.theme,
                           label: 'Six characters',
+                          borderColor: isPasswordLength
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
+                              checkColor: isPasswordLength ? FColors.white
+                              : Colors.transparent,
                           color: isPasswordLength
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One alphabet and number',
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: hasPasswordOneNumber
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
+                          checkColor: hasPasswordOneNumber ? FColors.white
+                              : Colors.transparent,
                           label: 'One upper case and lower case alphabet',
                           color: hasPasswordOneNumber
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                         borderColor: specialCharacter
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'One special character(@ # \$ *)',
+                          checkColor: specialCharacter ? FColors.white
+                              : Colors.transparent,
                           color: specialCharacter
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
+                        addVertSpace(10),
                         ValPassword(
                           theme: context.theme,
+                          borderColor: equalPassword
+                              ? Colors.transparent
+                              : FColors.primaryGrey,
                           label: 'Equal password and confirm password',
-                          color: passwordCheck
+                          checkColor: equalPassword ? FColors.white
+                              : Colors.transparent,
+                          color: equalPassword
                               ? FColors.primaryGreen
                               : Colors.transparent,
                         ),
@@ -272,7 +318,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                       opacity: _opacityEnabled ? 1 : 0.5,
                       child: FWIdgetsPrimaryButton(
                           isEnabled: true,
-                          buttonTitle: 'Rest password',
+                          buttonTitle: 'Reset password',
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               _opacityEnabled

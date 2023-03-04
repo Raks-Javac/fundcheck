@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
+import 'package:fundcheck/src/features/authentication/login/views/login_v.dart';
 
 import '../../../../core/utils/extensions.dart';
 import '../../../../shared/res/ui_helper.dart';
@@ -34,7 +36,7 @@ class SuccessView extends StatelessWidget {
           FWIdgetsPrimaryButton(
             isEnabled: true,
             buttonTitle: 'Log in',
-            onPressed: () {},
+            onPressed: ()=> FNavigator.navigateAndRemoveUntilRoute( const LoginView()),
             icon: Image.asset(
               'assets/images/arrow-right.png',
             ),

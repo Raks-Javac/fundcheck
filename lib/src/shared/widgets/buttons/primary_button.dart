@@ -21,11 +21,12 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
     return Opacity(
       opacity: isEnabled ? 1 : 0.5,
       child: MaterialButton(
+        elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(4),
         ),
         onPressed: onPressed,
-        color: context.theme.primaryColor,
+        color: isEnabled ?  context.theme.primaryColor : FColors.primaryGrey.withOpacity(0.3) ,
         minWidth: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15.0),
@@ -36,7 +37,7 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
               Text(
                 buttonTitle,
                 style: context.theme.textTheme.bodyMedium!.copyWith(
-                  color: FColors.white,
+                  color: isEnabled ?FColors.white : FColors.black,
                   fontSize: 14.5.sp,
                 ),
               ),

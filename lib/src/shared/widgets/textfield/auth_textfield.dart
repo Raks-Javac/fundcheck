@@ -99,7 +99,7 @@ class FAuthTField extends StatelessWidget {
                       borderSide: BorderSide(
                           color: isFieldValidated == true
                               ? theme.textTheme.bodyLarge!.color!
-                              : FColors.primaryGrey,
+                              : FColors.primaryGrey.withOpacity(0.4),
                           width: 1.5),
                       borderRadius:
                           const BorderRadius.all(Radius.circular(5.0))),
@@ -107,7 +107,7 @@ class FAuthTField extends StatelessWidget {
                       borderSide: BorderSide(
                         color: isFieldValidated == true
                             ? theme.textTheme.bodyLarge!.color!
-                            : FColors.primaryGrey,
+                            : FColors.primaryGrey.withOpacity(0.4),
                       ),
                       borderRadius:
                           const BorderRadius.all(Radius.circular(5.0))),
@@ -123,7 +123,7 @@ class FAuthTField extends StatelessWidget {
                       borderSide: BorderSide(
                           color: isFieldValidated == true
                               ? theme.textTheme.bodyLarge!.color!
-                              : FColors.primaryGrey,
+                              : FColors.primaryGrey.withOpacity(0.4),
                           width: 1.5),
                       borderRadius:
                           const BorderRadius.all(Radius.circular(5.0)))),

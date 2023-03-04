@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundcheck/src/features/authentication/register/views/create_pasword.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
@@ -7,7 +8,6 @@ import '../../../../shared/res/ui_helper.dart';
 import '../../../../shared/widgets/buttons/primary_button.dart';
 import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
-import 'create_password.dart';
 
 class VerifyEmail extends StatelessWidget {
   VerifyEmail({super.key});
@@ -69,7 +69,7 @@ class VerifyEmail extends StatelessWidget {
                 style: context.theme.textTheme.bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold)),
           ),
-          const Spacer(),
+         const Spacer(),
           FWIdgetsPrimaryButton(
             isEnabled: true,
             buttonTitle: 'Continue',

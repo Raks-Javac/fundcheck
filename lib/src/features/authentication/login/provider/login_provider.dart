@@ -98,7 +98,7 @@ class LoginInterface {
     bool? isButtonEnabledCopy,
     bool? showPasswordCopy,
     bool? isFaceidCopy,
-  }) {
+  }){
     return LoginInterface(
         isButtonEnabled: isButtonEnabledCopy ?? isButtonEnabled,
         emailPhoneNumber: emailPhoneNumberCopy ?? emailPhoneNumber,
