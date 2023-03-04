@@ -58,8 +58,8 @@ class FAuthTField extends StatelessWidget {
         addVertSpace(8.5.h),
         SizedBox(
           child: Material(
+            color: context.theme.scaffoldBackgroundColor,
             elevation: 0,
-            shadowColor: FColors.black.withOpacity(0.4),
             borderRadius: const BorderRadius.all(Radius.circular(10.0)),
             child: TextFormField(
               autovalidateMode: AutovalidateMode.always,

@@ -26,7 +26,7 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(4),
         ),
         onPressed: onPressed,
-        color: isEnabled ?  context.theme.primaryColor : FColors.primaryGrey.withOpacity(0.3) ,
+        color: isEnabled ? context.theme.primaryColor : FColors.tertiaryGrey2,
         minWidth: MediaQuery.of(context).size.width,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 15.0),
@@ -37,7 +37,7 @@ class FWIdgetsPrimaryButton extends StatelessWidget {
               Text(
                 buttonTitle,
                 style: context.theme.textTheme.bodyMedium!.copyWith(
-                  color: isEnabled ?FColors.white : FColors.black,
+                  color: isEnabled ? FColors.white : FColors.black,
                   fontSize: 14.5.sp,
                 ),
               ),
