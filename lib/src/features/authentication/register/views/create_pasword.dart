@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
@@ -13,7 +14,7 @@ import '../../widget/check_validate.dart';
 import 'success_reg.dart';
 
 class CreatePassword extends StatefulWidget {
-  const CreatePassword({super.key});
+   const CreatePassword({super.key});
 
   @override
   State<CreatePassword> createState() => _CreatePasswordState();
@@ -21,10 +22,13 @@ class CreatePassword extends StatefulWidget {
 
 class _CreatePasswordState extends State<CreatePassword> {
   final TextEditingController _passwordController1 = TextEditingController();
+
   final TextEditingController _passwordController2 = TextEditingController();
 
   bool _obscure1 = true;
+
   bool _obscure2 = true;
+
   bool _opacityEnabled = false;
 
   void toggle1() {
@@ -51,12 +55,17 @@ class _CreatePasswordState extends State<CreatePassword> {
   }
 
   bool isPasswordLength = false;
+
    bool hasPasswordOneNumber = false;
+
    bool specialCharacter = false;
+
    bool equalPassword = false;
+
    bool passwordCheck = false;
 
   String password = '';
+
   String confirmPassword = '';
 
   onPasswordChange(String password){
@@ -85,7 +94,7 @@ class _CreatePasswordState extends State<CreatePassword> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Column(

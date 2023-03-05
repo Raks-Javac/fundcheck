@@ -1,36 +1,59 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PasswordModel{
-  String firstPass;
-  String seconPass;
-  bool isPasswordLength;
-  bool hasPasswordOneNumber;
-  bool upperCaser;
-  bool specialCharacter;
-  bool equalPassword;
-  bool enableButton;
-  bool firstPassVal;
-  bool secondPassVal;
+  String? firstPass;
+  String? seconPass;
+  bool? isPasswordLength;
+  bool? hasPasswordOneNumber;
+  bool? upperCaser;
+  bool? specialCharacter;
+  bool? equalPassword;
+  bool? enableButton;
+  bool? firstPassVal;
+  bool? secondPassVal;
 
   PasswordModel({
-    required this.firstPassVal,
-    required this.secondPassVal,
-    required this.isPasswordLength,
-    required this.hasPasswordOneNumber,
-    required this.upperCaser,
-    required this.specialCharacter,
-    required this.equalPassword,
-    required this.enableButton,
-    required this.firstPass,
-    required this.seconPass,
+     this.firstPassVal,
+     this.secondPassVal,
+     this.isPasswordLength,
+     this.hasPasswordOneNumber,
+     this.upperCaser,
+     this.specialCharacter,
+     this.equalPassword,
+     this.enableButton,
+     this.firstPass,
+     this.seconPass,
   });
+
+  // PasswordModel copyWith({
+  //   String firstPassCopy,
+  //   String seconPassCopy,
+  //   bool isPasswordLengthCopy,
+  // bool hasPasswordOneNumberCopy,
+  // bool upperCaserCopy,
+  // bool specialCharacterCopy,
+  // bool equalPasswordCopy,
+  // bool enableButtonCopy,
+  // bool firstPassValCopy,
+  // bool secondPassValCopy,
+  // }){
+  //   return PasswordModel(firstPassVal: firstPassCopy ?? firstPass, secondPassVal: secondPassVal, isPasswordLength: isPasswordLength, hasPasswordOneNumber: hasPasswordOneNumber, upperCaser: upperCaser, specialCharacter: specialCharacter, equalPassword: equalPassword, enableButton: enableButton, firstPass: firstPass, seconPass: seconPass)
+  // }
 }
 
-class PasswordNotifer extends StateNotifier<PasswordModel> {
-  PasswordNotifer(super.state);
+ final passwordProvider = StateNotifierProvider((ref){
+   return PasswordNotifer(PasswordModel());
+ });
 
+class PasswordNotifer extends StateNotifier<PasswordModel> {
+
+  final TextEditingController password1Controller = TextEditingController();
+  final TextEditingController password2Controller = TextEditingController();
+
+  PasswordNotifer(super.state);
   buttonEnable(){
-    if( state.firstPassVal && state.secondPassVal){
+    if(state.firstPassVal! && state.secondPassVal!){
       state.enableButton = true;
     }else{
       state.enableButton = false;
@@ -38,39 +61,6 @@ class PasswordNotifer extends StateNotifier<PasswordModel> {
   }
 
 
-  //  bool _obscure1 = true;
-  // bool _obscure2 = true;
-  // bool _opacityEnabled = false;
-
-  // void toggle1() {
-  //   setState(() {
-  //     _obscure1 = !_obscure1;
-  //   });
-  // }
-
-  // void toggle2() {
-  //     _obscure2 = !_obscure2;
-  // }
-
-  // void checkOpacity() {
- 
-  //     if (state.firstPassValq.text.isNotEmpty &&
-  //         _passwordController2.text.isNotEmpty) {
-  //       _opacityEnabled = true;
-  //     } else {
-  //       _opacityEnabled = false;
-  //     }
-    
-  // }
-
-  // bool isPasswordLength = false;
-  //  bool hasPasswordOneNumber = false;
-  //  bool specialCharacter = false;
-  //  bool equalPassword = false;
-  //  bool passwordCheck = false;
-
-  // String password = '';
-  // String confirmPassword = '';
 
   onPasswordChange(PasswordModel password){
     final numRegex = RegExp(r'[0-9]');
@@ -79,15 +69,15 @@ class PasswordNotifer extends StateNotifier<PasswordModel> {
 
   
        state.isPasswordLength = false;
-      if(password.firstPass.length >= 6){
+      if(password.firstPass!.length >= 6){
         state.isPasswordLength = true;
       }
       state.hasPasswordOneNumber = false;
-      if(numRegex.hasMatch(password.firstPass) && alphabetRegex.hasMatch(password.firstPass)){
+      if(numRegex.hasMatch(password.firstPass!) && alphabetRegex.hasMatch(password.firstPass!)){
         state.hasPasswordOneNumber = true;
       }
       state.specialCharacter = false;
-      if(specialRegex.hasMatch(password.firstPass)){
+      if(specialRegex.hasMatch(password.firstPass!)){
         state.specialCharacter = true;
       }
       state.equalPassword = false;
