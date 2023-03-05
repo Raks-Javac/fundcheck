@@ -15,10 +15,13 @@ import 'verify_email.dart';
 class OpenAccount extends ConsumerWidget {
   const OpenAccount({super.key});
 
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(registerProvider);
+ 
     final registerNotifier = ref.watch(registerProvider.notifier);
+         bool isEnabled = false;
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: false,
@@ -86,14 +89,14 @@ class OpenAccount extends ConsumerWidget {
                     onPressed: () {
                       print(registerNotifier.firstNameValGetter);
                       if (registerNotifier.enableButtonGetter == true) {
-                        FNavigator.displayBottomSheet(context, VerifyEmail());
+                       FNavigator.displayBottomSheet(context, VerifyEmail());
                       }
                     },
-                    icon: const Padding(
-                      padding: EdgeInsets.only(left: 10.0),
+                    icon:  Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
                       child: Center(
                         child: FWidgetsRenderSvg(
-                          iconColor: FColors.white,
+                          iconColor: isEnabled == false ?FColors.black : FColors.white,
                           iconPath: FIcons.arrowRight,
                         ),
                       ),

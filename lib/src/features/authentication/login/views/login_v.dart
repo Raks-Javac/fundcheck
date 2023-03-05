@@ -197,7 +197,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = () =>
-                            FNavigator.navigateToRoute(const OpenAccount()),
+                            FNavigator.navigateToRoute( OpenAccount()),
                       text: "  Register",
                       style: context.theme.textTheme.labelLarge?.copyWith(
                         fontSize: 13.sp,
