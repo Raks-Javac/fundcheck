@@ -322,7 +322,7 @@ import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 
 class CreatePassword extends ConsumerWidget {
-  const CreatePassword({super.key});
+  CreatePassword({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -364,7 +364,7 @@ class CreatePassword extends ConsumerWidget {
                       ref
                           .watch(passwordProvider.notifier)
                           .onPasswordChange(value);
-                      passwordNotifier.seconPass = value!;
+                      passwordNotifier.firstPass = value!;
                     },
                     hintText: 'Enter your password',
                     suffixIcon: GestureDetector(
