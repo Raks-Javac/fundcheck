@@ -1,90 +1,156 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class PasswordModel{
-  String? firstPass;
-  String? seconPass;
-  bool? isPasswordLength;
-  bool? hasPasswordOneNumber;
-  bool? upperCaser;
-  bool? specialCharacter;
-  bool? equalPassword;
-  bool? enableButton;
-  bool? firstPassVal;
-  bool? secondPassVal;
+class PasswordModel {
+   String firstPass;
+   String seconPass;
+  final bool isPasswordLength;
+  final bool hasPasswordOneNumber;
+  final bool upperCaser;
+  final bool specialCharacter;
+  final bool equalPassword;
+  final bool enableButton;
+  final bool togglePassword1;
+  final bool togglePassword2;
+  final bool isValid;
 
-  PasswordModel({
-     this.firstPassVal,
-     this.secondPassVal,
-     this.isPasswordLength,
-     this.hasPasswordOneNumber,
-     this.upperCaser,
-     this.specialCharacter,
-     this.equalPassword,
-     this.enableButton,
-     this.firstPass,
-     this.seconPass,
+   PasswordModel({
+    this.firstPass = '',
+    this.seconPass = '',
+    this.isPasswordLength = false,
+    this.hasPasswordOneNumber = false,
+    this.upperCaser = false,
+    this.specialCharacter = false,
+    this.equalPassword = false,
+    this.enableButton = false,
+    this.togglePassword1 = false,
+    this.togglePassword2 = false,
+    this.isValid = false,
   });
+  PasswordModel copyWith({
+    String? firstPass,
+    String? seconPass,
+    bool? isPasswordLength,
+    bool? hasPasswordOneNumber,
+    bool? upperCaser,
+    bool? specialCharacter,
+    bool? equalPassword,
+    bool? enableButton,
+    bool? togglePassword1,
+    bool? togglePassword2,
+    bool? isValid,
+  }) {
+    return PasswordModel(
+      firstPass: firstPass ?? this.firstPass,
+      seconPass: seconPass ?? this.seconPass,
+      isPasswordLength: isPasswordLength ?? this.isPasswordLength,
+      hasPasswordOneNumber: hasPasswordOneNumber ?? this.hasPasswordOneNumber,
+      upperCaser: upperCaser ?? this.upperCaser,
+      specialCharacter: specialCharacter ?? this.specialCharacter,
+      equalPassword: equalPassword ?? this.equalPassword,
+      enableButton: enableButton ?? this.enableButton,
+      togglePassword1: togglePassword1 ?? this.togglePassword1,
+      togglePassword2: togglePassword2 ?? this.togglePassword2,
+      isValid: isValid ?? this.isValid,
+    );
+  }
 
-  // PasswordModel copyWith({
-  //   String firstPassCopy,
-  //   String seconPassCopy,
-  //   bool isPasswordLengthCopy,
-  // bool hasPasswordOneNumberCopy,
-  // bool upperCaserCopy,
-  // bool specialCharacterCopy,
-  // bool equalPasswordCopy,
-  // bool enableButtonCopy,
-  // bool firstPassValCopy,
-  // bool secondPassValCopy,
-  // }){
-  //   return PasswordModel(firstPassVal: firstPassCopy ?? firstPass, secondPassVal: secondPassVal, isPasswordLength: isPasswordLength, hasPasswordOneNumber: hasPasswordOneNumber, upperCaser: upperCaser, specialCharacter: specialCharacter, equalPassword: equalPassword, enableButton: enableButton, firstPass: firstPass, seconPass: seconPass)
-  // }
+  @override
+  bool operator ==(covariant PasswordModel other) {
+    if (identical(this, other)) return true;
+  
+    return 
+      other.firstPass == firstPass &&
+      other.seconPass == seconPass &&
+      other.isPasswordLength == isPasswordLength &&
+      other.hasPasswordOneNumber == hasPasswordOneNumber &&
+      other.upperCaser == upperCaser &&
+      other.specialCharacter == specialCharacter &&
+      other.equalPassword == equalPassword &&
+      other.enableButton == enableButton &&
+      other.togglePassword1 == togglePassword1 &&
+      other.togglePassword2 == togglePassword2 &&
+      other.isValid == isValid;
+  }
+
+  @override
+  int get hashCode {
+    return firstPass.hashCode ^
+      seconPass.hashCode ^
+      isPasswordLength.hashCode ^
+      hasPasswordOneNumber.hashCode ^
+      upperCaser.hashCode ^
+      specialCharacter.hashCode ^
+      equalPassword.hashCode ^
+      enableButton.hashCode ^
+      togglePassword1.hashCode ^
+      togglePassword2.hashCode ^
+      isValid.hashCode;
+  }
+
+  @override
+  String toString() {
+    return 'PasswordModel(firstPass: $firstPass, seconPass: $seconPass, isPasswordLength: $isPasswordLength, hasPasswordOneNumber: $hasPasswordOneNumber, upperCaser: $upperCaser, specialCharacter: $specialCharacter, equalPassword: $equalPassword, enableButton: $enableButton, togglePassword1: $togglePassword1, togglePassword2: $togglePassword2, isValid: $isValid)';
+  }
 }
 
- final passwordProvider = StateNotifierProvider((ref){
-   return PasswordNotifer(PasswordModel());
- });
+final passwordProvider = StateNotifierProvider<PasswordRepositry, PasswordModel>((ref) {
+  return PasswordRepositry();
+});
 
-class PasswordNotifer extends StateNotifier<PasswordModel> {
+
+class PasswordRepositry extends StateNotifier<PasswordModel> {
+  PasswordRepositry() : super( PasswordModel());
 
   final TextEditingController password1Controller = TextEditingController();
   final TextEditingController password2Controller = TextEditingController();
 
-  PasswordNotifer(super.state);
-  buttonEnable(){
-    if(state.firstPassVal! && state.secondPassVal!){
-      state.enableButton = true;
-    }else{
-      state.enableButton = false;
-    }
-  }
+
+  
+
+   toggleFirstPassword() {
+    state = state.copyWith(togglePassword1: !state.togglePassword1);
+   }
+
+   toggleSecondPassword() {
+    state = state.copyWith(togglePassword2: !state.togglePassword2);
+   }
 
 
 
-  onPasswordChange(PasswordModel password){
+
+    onPasswordChange(String? val){
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');
 
-  
-       state.isPasswordLength = false;
-      if(password.firstPass!.length >= 6){
-        state.isPasswordLength = true;
+      if(state.firstPass.length >= 6 ){
+        state = state.copyWith(isPasswordLength: true);
+      }else{
+         state = state.copyWith(isPasswordLength: false);
       }
-      state.hasPasswordOneNumber = false;
-      if(numRegex.hasMatch(password.firstPass!) && alphabetRegex.hasMatch(password.firstPass!)){
-        state.hasPasswordOneNumber = true;
+      
+      if(numRegex.hasMatch(state.firstPass) && alphabetRegex.hasMatch(state.firstPass)){
+        state = state.copyWith(hasPasswordOneNumber: true);
+      } else{
+        state = state.copyWith(hasPasswordOneNumber: false);
       }
-      state.specialCharacter = false;
-      if(specialRegex.hasMatch(password.firstPass!)){
-        state.specialCharacter = true;
+      
+      if(specialRegex.hasMatch(state.firstPass)){
+      state = state.copyWith(specialCharacter: true);
+      }else{
+        state = state.copyWith(specialCharacter: false);
       }
-      state.equalPassword = false;
-     if(password.firstPass == password.seconPass){
-       state.equalPassword = true;
+     
+     if(state.firstPass == state.seconPass){
+    state = state.copyWith(equalPassword: true);
+     }else{
+       state = state.copyWith(equalPassword: false);
      }
     }
-  }
 
+
+}
 
