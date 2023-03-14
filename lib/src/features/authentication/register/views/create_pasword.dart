@@ -364,7 +364,7 @@ class CreatePassword extends ConsumerWidget {
                       ref
                           .watch(passwordProvider.notifier)
                           .onPasswordChange(value);
-                      passwordNotifier.seconPass = value!;
+                      passwordNotifier.firstPass = value!;
                     },
                     hintText: 'Enter your password',
                     suffixIcon: GestureDetector(
