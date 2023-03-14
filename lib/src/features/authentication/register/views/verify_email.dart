@@ -75,7 +75,8 @@ class VerifyEmail extends StatelessWidget {
             buttonTitle: 'Continue',
             onPressed: () {
               FNavigator.popSheet();
-              displayBottomSheet(context, const CreatePassword());
+             FNavigator.navigateToRoute( CreatePassword());
+             // displayBottomSheet(context, const CreatePassword());
             },
             icon: const Padding(
               padding: EdgeInsets.only(left: 10.0),

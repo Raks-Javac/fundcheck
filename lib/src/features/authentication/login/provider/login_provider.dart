@@ -56,10 +56,10 @@ class LoginProvider extends StateNotifier<LoginInterface> {
     checkTextField();
   }
 
-  void checkTextField() {
+  void checkTextField(){
     if (emailPhoneNumVal && passwordVal) {
       buttonEnabled = true;
-    } else {
+    }else {
       buttonEnabled = false;
     }
   }

@@ -88,7 +88,7 @@ class OpenAccount extends ConsumerWidget {
                     onPressed: () {
                       print(registerNotifier.firstNameValGetter);
                       if (registerNotifier.enableButtonGetter == true) {
-                        FNavigator.displayBottomSheet(context, VerifyEmail());
+                       FNavigator.displayBottomSheet(context, VerifyEmail(),);
                       }
                     },
                     icon: Padding(
