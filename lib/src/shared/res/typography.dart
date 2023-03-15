@@ -24,7 +24,7 @@ abstract class FTypography {
     fontFamily: FStrings.monteserratRegular,
   );
   static const TextStyle caption = TextStyle(
-    fontSize: 12,
+    fontSize: 11,
     fontFamily: FStrings.monteserratRegular,
   );
   static const TextStyle titleLarge = headlineLarge;

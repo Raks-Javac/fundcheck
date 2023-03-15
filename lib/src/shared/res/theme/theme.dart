@@ -19,6 +19,7 @@ abstract class FTheme {
         headlineMedium: FTypography.headlineMedium,
         headlineSmall: FTypography.headlineSmall,
         labelLarge: FTypography.button,
+        labelSmall: FTypography.caption,
         //the color scheme requires alot of parameters in the new flutter SDK update
         // colorScheme: ColorScheme(
         //     error: FColors.primaryRed, background: Colors.transparent),
