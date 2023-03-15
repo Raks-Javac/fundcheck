@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
@@ -14,7 +13,7 @@ import '../../widget/check_validate.dart';
 import 'success_reg.dart';
 
 class CreatePassword extends StatefulWidget {
-   const CreatePassword({super.key});
+  const CreatePassword({super.key});
 
   @override
   State<CreatePassword> createState() => _CreatePasswordState();
@@ -56,45 +55,45 @@ class _CreatePasswordState extends State<CreatePassword> {
 
   bool isPasswordLength = false;
 
-   bool hasPasswordOneNumber = false;
+  bool hasPasswordOneNumber = false;
 
-   bool specialCharacter = false;
+  bool specialCharacter = false;
 
-   bool equalPassword = false;
+  bool equalPassword = false;
 
-   bool passwordCheck = false;
+  bool passwordCheck = false;
 
   String password = '';
 
   String confirmPassword = '';
 
-  onPasswordChange(String password){
+  onPasswordChange(String password) {
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');
 
     setState(() {
-       isPasswordLength = false;
-      if(password.length >= 6){
+      isPasswordLength = false;
+      if (password.length >= 6) {
         isPasswordLength = true;
       }
       hasPasswordOneNumber = false;
-      if(numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)){
+      if (numRegex.hasMatch(password) && alphabetRegex.hasMatch(password)) {
         hasPasswordOneNumber = true;
       }
       specialCharacter = false;
-      if(specialRegex.hasMatch(password)){
+      if (specialRegex.hasMatch(password)) {
         specialCharacter = true;
       }
       equalPassword = false;
-     if(password == confirmPassword){
-       equalPassword = true;
-     }
+      if (password == confirmPassword) {
+        equalPassword = true;
+      }
     });
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Column(
@@ -226,8 +225,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                     borderColor: isPasswordLength
                         ? Colors.transparent
                         : FColors.primaryGrey,
-                        checkColor: isPasswordLength ? FColors.white
-                        : Colors.transparent,
+                    checkColor:
+                        isPasswordLength ? FColors.white : Colors.transparent,
                     color: isPasswordLength
                         ? FColors.primaryGreen
                         : Colors.transparent,
@@ -239,7 +238,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                         ? Colors.transparent
                         : FColors.primaryGrey,
                     label: 'One alphabet and number',
-                    checkColor: hasPasswordOneNumber ? FColors.white
+                    checkColor: hasPasswordOneNumber
+                        ? FColors.white
                         : Colors.transparent,
                     color: hasPasswordOneNumber
                         ? FColors.primaryGreen
@@ -251,7 +251,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                     borderColor: hasPasswordOneNumber
                         ? Colors.transparent
                         : FColors.primaryGrey,
-                    checkColor: hasPasswordOneNumber ? FColors.white
+                    checkColor: hasPasswordOneNumber
+                        ? FColors.white
                         : Colors.transparent,
                     label: 'One upper case and lower case alphabet',
                     color: hasPasswordOneNumber
@@ -261,12 +262,12 @@ class _CreatePasswordState extends State<CreatePassword> {
                   addVertSpace(10),
                   ValPassword(
                     theme: context.theme,
-                   borderColor: specialCharacter
+                    borderColor: specialCharacter
                         ? Colors.transparent
                         : FColors.primaryGrey,
                     label: 'One special character(@ # \$ *)',
-                    checkColor: specialCharacter ? FColors.white
-                        : Colors.transparent,
+                    checkColor:
+                        specialCharacter ? FColors.white : Colors.transparent,
                     color: specialCharacter
                         ? FColors.primaryGreen
                         : Colors.transparent,
@@ -278,8 +279,8 @@ class _CreatePasswordState extends State<CreatePassword> {
                         ? Colors.transparent
                         : FColors.primaryGrey,
                     label: 'Equal password and confirm password',
-                    checkColor: equalPassword ? FColors.white
-                        : Colors.transparent,
+                    checkColor:
+                        equalPassword ? FColors.white : Colors.transparent,
                     color: equalPassword
                         ? FColors.primaryGreen
                         : Colors.transparent,
@@ -290,12 +291,11 @@ class _CreatePasswordState extends State<CreatePassword> {
                     child: FWIdgetsPrimaryButton(
                         isEnabled: true,
                         buttonTitle: 'Create account',
-                        onPressed: (){
-                            _opacityEnabled && equalPassword
-                                ? FNavigator.displayBottomSheet(
-                                    context, const SuccessView())
-                                : null;
-                          
+                        onPressed: () {
+                          _opacityEnabled && equalPassword
+                              ? FNavigator.displayBottomSheet(
+                                  context, const SuccessView())
+                              : null;
                         }),
                   )
                 ],
@@ -307,4 +307,3 @@ class _CreatePasswordState extends State<CreatePassword> {
     );
   }
 }
-
