@@ -92,8 +92,6 @@ class FCheckValidator {
     return null;
   }
 
-  
-
   static String validatePassword(String password, String confirmPassword) {
     if (password.isEmpty || confirmPassword.isEmpty) {
       return "Passwords cannot be empty";

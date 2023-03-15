@@ -284,19 +284,19 @@ class FCheckNavBar extends StatefulWidget {
 
 class _FCheckNavBarState extends State<FCheckNavBar>
     with SingleTickerProviderStateMixin {
-  late TabController _tabController;
+  late TabController tabController;
   @override
   void initState() {
-    _tabController = TabController(length: 5, vsync: this)..addListener(() {});
+    tabController = TabController(length: 5, vsync: this)..addListener(() {});
     super.initState();
   }
 
   final screens = [
-    HomeView(),
-    BudgetView(),
-    TransactionView(),
-    StatisticView(),
-    MoreView()
+    const HomeView(),
+    const BudgetView(),
+    const TransactionView(),
+    const StatisticView(),
+    const MoreView()
   ];
   int activeIndex = 0;
 
@@ -311,8 +311,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
     return Scaffold(
       body: screens[activeIndex],
       bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        backgroundColor: context.theme.scaffoldBackgroundColor,
+          elevation: 0,
+          backgroundColor: context.theme.scaffoldBackgroundColor,
           onTap: changeActiveIndexstate,
           currentIndex: activeIndex,
           unselectedItemColor: FColors.primaryGrey,
@@ -321,7 +321,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
           items: [
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
                   child: Column(
                     children: [
                       Divider(
@@ -345,7 +346,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
                 label: 'Home'),
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
                   child: Column(
                     children: [
                       Divider(
@@ -369,7 +371,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
                 label: 'Budget'),
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
                   child: Column(
                     children: [
                       Divider(
@@ -393,7 +396,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
                 label: 'Transactions'),
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
                   child: Column(
                     children: [
                       Divider(
@@ -417,7 +421,8 @@ class _FCheckNavBarState extends State<FCheckNavBar>
                 label: 'Stats'),
             BottomNavigationBarItem(
                 icon: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 4, vertical: 3),
                   child: Column(
                     children: [
                       Divider(

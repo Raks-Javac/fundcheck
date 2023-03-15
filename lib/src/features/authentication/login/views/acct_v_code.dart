@@ -105,7 +105,7 @@ class AccountVerifyCode extends StatelessWidget {
             isEnabled: true,
             buttonTitle: 'Continue',
             onPressed: () {
-              FNavigator.navigateAndRemoveUntilRoute(FCheckNavBar());
+              FNavigator.navigateAndRemoveUntilRoute(const FCheckNavBar());
             },
             icon: const Padding(
               padding: EdgeInsets.only(left: 10.0),

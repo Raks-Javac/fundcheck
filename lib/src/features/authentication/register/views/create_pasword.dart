@@ -322,7 +322,7 @@ import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 
 class CreatePassword extends ConsumerWidget {
-  CreatePassword({super.key});
+  const CreatePassword({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
