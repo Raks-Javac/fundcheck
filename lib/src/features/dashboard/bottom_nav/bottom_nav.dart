@@ -40,26 +40,28 @@ class _FCheckNavBarState extends State<FCheckNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(child: screens[activeIndex]),
-      bottomNavigationBar: SizedBox(
-          height: 64,
-          child: Row(
-            children: [
-              ...BottomNavCustomItem.labelStringList.map((e) {
-                return Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      changeActiveIndexstate(e.index);
-                    },
-                    child: BottomNavCustomItem(
-                        activeIndex: activeIndex,
-                        iconPath: e.iconPath,
-                        index: e.index,
-                        label: e.label),
-                  ),
-                );
-              })
-            ],
-          )),
+      bottomNavigationBar: SafeArea(
+        child: SizedBox(
+            height: 70,
+            child: Row(
+              children: [
+                ...BottomNavCustomItem.labelStringList.map((e) {
+                  return Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        changeActiveIndexstate(e.index);
+                      },
+                      child: BottomNavCustomItem(
+                          activeIndex: activeIndex,
+                          iconPath: e.iconPath,
+                          index: e.index,
+                          label: e.label),
+                    ),
+                  );
+                })
+              ],
+            )),
+      ),
     );
   }
 }
@@ -101,15 +103,15 @@ class BottomNavCustomItem extends StatelessWidget {
           AssetImage(iconPath),
           color:
               activeIndex == index ? FColors.primaryBlue : FColors.primaryGrey,
-          size: 21.5,
+          size: 24,
         ),
         addVerticalSpacing(5),
         // const AutoSizeText(""),
         AutoSizeText(
           label,
-          maxLines: 2,
+          maxLines: 1,
           minFontSize: 8,
-          maxFontSize: 12,
+          maxFontSize: 11,
           style: context.theme.textTheme.labelLarge?.copyWith(
             fontSize: 9.5.sp,
             color: activeIndex == index
