@@ -126,6 +126,7 @@ class PasswordRepositry extends StateNotifier<PasswordModel> {
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');
 
+
       if(state.firstPass.length >= 6 ){
         state = state.copyWith(isPasswordLength: true);
       }else{
