@@ -11,8 +11,9 @@ class FWidgetsPrimaryAppBar extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
   final Widget? leadingIcon;
+  final Widget? trailing;
   const FWidgetsPrimaryAppBar(
-      {super.key, required this.title, this.leadingIcon});
+      {super.key, required this.title, this.leadingIcon, this.trailing});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class FWidgetsPrimaryAppBar extends StatelessWidget
       ),
       automaticallyImplyLeading: false,
       centerTitle: true,
+      actions: [trailing ?? const SizedBox.shrink()],
       leading: leadingIcon ??
           GestureDetector(
               onTap: () => FNavigator.popSheet(),
