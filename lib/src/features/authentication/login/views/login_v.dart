@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -130,9 +128,9 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                             
                               GestureDetector(
-                                onTap: ()=> FNavigator.navigateToRoute(const ResetPassword()),
+                                onTap: () => FNavigator.navigateToRoute(
+                                    const ResetPassword()),
                                 child: Text(
                                   "Forget Password",
                                   style: context.theme.textTheme.labelLarge
@@ -197,7 +195,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     TextSpan(
                       recognizer: TapGestureRecognizer()
                         ..onTap = () =>
-                            FNavigator.navigateToRoute( OpenAccount()),
+                            FNavigator.navigateToRoute(const OpenAccount()),
                       text: "  Register",
                       style: context.theme.textTheme.labelLarge?.copyWith(
                         fontSize: 13.sp,

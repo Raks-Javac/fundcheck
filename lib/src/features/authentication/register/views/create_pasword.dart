@@ -322,9 +322,7 @@ import '../../../../shared/widgets/render_svg.dart/render_icon.dart';
 import '../../../../shared/widgets/textfield/auth_textfield.dart';
 
 class CreatePassword extends ConsumerWidget {
-  CreatePassword({super.key});
-
-
+  const CreatePassword({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -359,55 +357,73 @@ class CreatePassword extends ConsumerWidget {
                     // isFieldValidated: _opacityEnabled,
                     useOpacityForValidation: true,
                     obscureText: passwordNotifier.togglePassword1,
-                    textEditingController: ref.watch(passwordProvider.notifier).password1Controller,
+                    textEditingController: ref
+                        .watch(passwordProvider.notifier)
+                        .password1Controller,
                     onChanged: (value) {
-                      ref.watch(passwordProvider.notifier).onPasswordChange(value);
-                       passwordNotifier.seconPass = value!;
+                      ref
+                          .watch(passwordProvider.notifier)
+                          .onPasswordChange(value);
+                      passwordNotifier.seconPass = value!;
                     },
                     hintText: 'Enter your password',
                     suffixIcon: GestureDetector(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
-                          onTap: ()=> ref.read(passwordProvider.notifier).toggleFirstPassword(),
+                          onTap: () => ref
+                              .read(passwordProvider.notifier)
+                              .toggleFirstPassword(),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              passwordNotifier.togglePassword1 ? 'Show' : 'Hide',
-                                style: context.theme.textTheme.bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold, color: FColors.primaryGrey),
-                                    ),
+                              passwordNotifier.togglePassword1
+                                  ? 'Show'
+                                  : 'Hide',
+                              style: context.theme.textTheme.bodyMedium!
+                                  .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: FColors.primaryGrey),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                   addVertSpace(20),
-                   FAuthTField(
+                  FAuthTField(
                     label: 'Confirm Password',
                     // isFieldValidated: _opacityEnabled,
                     useOpacityForValidation: true,
                     obscureText: passwordNotifier.togglePassword2,
-                    textEditingController: ref.watch(passwordProvider.notifier).password2Controller,
+                    textEditingController: ref
+                        .watch(passwordProvider.notifier)
+                        .password2Controller,
                     onChanged: (value) {
                       ref
                           .read(passwordProvider.notifier)
                           .onPasswordChange(value);
-                       // passwordNotifier.firstPass = value!;
+                      // passwordNotifier.firstPass = value!;
                     },
                     hintText: 'Enter your password',
                     suffixIcon: GestureDetector(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GestureDetector(
-                          onTap: ()=> ref.read(passwordProvider.notifier).toggleSecondPassword(),
+                          onTap: () => ref
+                              .read(passwordProvider.notifier)
+                              .toggleSecondPassword(),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              passwordNotifier.togglePassword2 ? 'Show' : 'Hide',
-                                style: context.theme.textTheme.bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold, color: FColors.primaryGrey),
-                                    ),
+                              passwordNotifier.togglePassword2
+                                  ? 'Show'
+                                  : 'Hide',
+                              style: context.theme.textTheme.bodyMedium!
+                                  .copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: FColors.primaryGrey),
+                            ),
                           ),
                         ),
                       ),

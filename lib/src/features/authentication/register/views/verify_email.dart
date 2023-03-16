@@ -69,14 +69,14 @@ class VerifyEmail extends StatelessWidget {
                 style: context.theme.textTheme.bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold)),
           ),
-         const Spacer(),
+          const Spacer(),
           FWIdgetsPrimaryButton(
             isEnabled: true,
             buttonTitle: 'Continue',
             onPressed: () {
               FNavigator.popSheet();
-             FNavigator.navigateToRoute( CreatePassword());
-             // displayBottomSheet(context, const CreatePassword());
+              FNavigator.navigateToRoute(const CreatePassword());
+              // displayBottomSheet(context, const CreatePassword());
             },
             icon: const Padding(
               padding: EdgeInsets.only(left: 10.0),

@@ -13,4 +13,5 @@ abstract class FIcons {
   static const String transactionIcon = 'assets/icons/transaction (2).png';
   static const String statIcon = 'assets/icons/stat.png';
   static const String moreIcon = 'assets/icons/category-2.png';
+  static const String winkEmoji = "assets/images/wink_emoji.png";
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fundcheck/src/core/bottom_nav/bottom_nav.dart';
+import 'package:fundcheck/src/features/dashboard/bottom_nav/views/bottom_nav.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
@@ -105,7 +105,7 @@ class AccountVerifyCode extends StatelessWidget {
             isEnabled: true,
             buttonTitle: 'Continue',
             onPressed: () {
-              FNavigator.navigateAndRemoveUntilRoute(FCheckNavBar());
+              FNavigator.navigateAndRemoveUntilRoute(const FCheckNavBar());
             },
             icon: const Padding(
               padding: EdgeInsets.only(left: 10.0),
