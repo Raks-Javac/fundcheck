@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fundcheck/src/features/dashboard/bottom_nav/bottom_nav.dart';
+import 'package:fundcheck/src/features/dashboard/bottom_nav/views/bottom_nav.dart';
 
 import '../../../../core/navigation/navigation_helpers.dart';
 import '../../../../core/utils/extensions.dart';
