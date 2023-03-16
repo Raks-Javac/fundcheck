@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -82,7 +80,7 @@ class BottomNavCustomItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    log(activeIndex.toString());
+    // log(activeIndex.toString());
     return Column(
       children: [
         Divider(
@@ -99,7 +97,6 @@ class BottomNavCustomItem extends StatelessWidget {
           size: 24,
         ),
         addVerticalSpacing(5),
-        // const AutoSizeText(""),
         AutoSizeText(
           label,
           maxLines: 1,
