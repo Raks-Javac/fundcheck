@@ -50,7 +50,7 @@ class TrasactionDateTile extends StatelessWidget {
             fontWeight: FontWeight.w600,
             color: activeIndex != tileIndex
                 ? FColors.tertiaryGrey
-                : context.theme.textTheme.bodyMedium?.color,
+                : FColors.primaryBlue,
             fontFamily: FStrings.monteserratSemiBold,
           ),
         ),
