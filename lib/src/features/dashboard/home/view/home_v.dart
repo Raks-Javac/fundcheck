@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fundcheck/src/app_level_locator/provider_locator.dart';
 import 'package:fundcheck/src/core/utils/extensions.dart';
 import 'package:fundcheck/src/features/dashboard/home/provider/home_provider.dart';
 import 'package:fundcheck/src/features/dashboard/home/widgets/insight_widget.dart';
 import 'package:fundcheck/src/features/dashboard/home/widgets/transaction_date_tile.dart';
 import 'package:fundcheck/src/shared/res/gap.dart';
 import 'package:fundcheck/src/shared/res/res.dart';
+import 'package:fundcheck/src/shared/res/theme/provider/theme/theme_provider.dart';
 import 'package:fundcheck/src/shared/res/ui_helper.dart';
 import 'package:fundcheck/src/shared/widgets/cards/budget_balance.dart';
 import 'package:fundcheck/src/shared/widgets/render_svg.dart/render_icon.dart';
@@ -17,7 +19,9 @@ class HomeView extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     ref.watch(homeProvider);
+    ref.watch(themeProvider);
 
+    final themProviderNotifier = ref.watch(themeProvider.notifier);
     // final homeStateNotifier = ref.watch(homeProvider.notifier);
     return Scaffold(
       backgroundColor: context.theme.scaffoldBackgroundColor,
@@ -58,12 +62,15 @@ class HomeView extends ConsumerWidget {
                         padding: const EdgeInsets.all(3.0),
                         child: CircleAvatar(
                           radius: 20,
-                          backgroundColor: FColors.tertiaryYellow,
+                          backgroundColor:
+                              themProviderNotifier.mode == AppThemeMode.dark
+                                  ? FColors.darkModeBackgroundColor
+                                  : FColors.tertiaryYellow,
                           child: Text(
                             "SO",
                             style: context.theme.textTheme.headlineMedium
                                 ?.copyWith(
-                              fontSize: 17.sp,
+                              fontSize: 15.sp,
                               color: FColors.primaryYellow,
                               fontFamily: FStrings.monteserratSemiBold,
                             ),

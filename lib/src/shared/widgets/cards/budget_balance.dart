@@ -46,9 +46,9 @@ class CardBudgetBalanceCard extends StatelessWidget {
             Text(
               "3rd March to 3rd June",
               style: context.theme.textTheme.headlineMedium?.copyWith(
-                fontSize: 12.sp,
-                fontFamily: FStrings.monteserratSemiBold,
-              ),
+                  fontSize: 12.sp,
+                  fontFamily: FStrings.monteserratSemiBold,
+                  color: FColors.black),
             )
           ],
         ),
