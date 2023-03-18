@@ -8,6 +8,7 @@ import 'package:fundcheck/src/features/dashboard/home/widgets/transaction_date_t
 import 'package:fundcheck/src/shared/res/gap.dart';
 import 'package:fundcheck/src/shared/res/res.dart';
 import 'package:fundcheck/src/shared/res/ui_helper.dart';
+import 'package:fundcheck/src/shared/widgets/cards/budget_balance.dart';
 import 'package:fundcheck/src/shared/widgets/render_svg.dart/render_icon.dart';
 
 class HomeView extends ConsumerWidget {
@@ -105,7 +106,8 @@ class HomeView extends ConsumerWidget {
                           ),
                         )),
                       ),
-                      addVerticalSpacing(80),
+                      const CardBudgetBalanceCard(),
+                      addVerticalSpacing(30),
 //budget insight section
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

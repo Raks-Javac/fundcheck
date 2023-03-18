@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
+
 // import 'package:flutter';
 
 import 'src/app_level_locator/provider_locator.dart';
@@ -15,7 +16,6 @@ void main() {
 
 class FundCheckApp extends ConsumerWidget {
   const FundCheckApp({super.key});
-  
 
   // This widget is the root of your application.
   @override
@@ -24,16 +24,16 @@ class FundCheckApp extends ConsumerWidget {
         const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
     ref.watch(themeProvider);
     return ScreenUtilInit(
-      minTextAdapt: true,
-      builder: (context, child){
-      return MaterialApp(
-      title: FStrings.appName,
-      navigatorKey: FNavigator.navigatorKey,
-      scaffoldMessengerKey: FNavigator.scaffoldMessengerKey,
-      debugShowCheckedModeBanner: false,
-      theme: ref.watch(themeProvider.notifier).returnThemeBasedOnMode(),
-      home: const OnBoardingView(),
-    );
-    });
+        minTextAdapt: true,
+        builder: (context, child) {
+          return MaterialApp(
+            title: FStrings.appName,
+            navigatorKey: FNavigator.navigatorKey,
+            scaffoldMessengerKey: FNavigator.scaffoldMessengerKey,
+            debugShowCheckedModeBanner: false,
+            theme: ref.watch(themeProvider.notifier).returnThemeBasedOnMode(),
+            home: const OnBoardingView(),
+          );
+        });
   }
 }
