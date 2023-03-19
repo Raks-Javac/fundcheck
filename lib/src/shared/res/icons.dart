@@ -16,4 +16,8 @@ abstract class FIcons {
   static const String winkEmoji = "assets/images/wink_emoji.png";
   static const String amountCardBackground =
       "assets/images/card_background.png";
+
+  static const String foodIcon = "assets/icons/food_icon.png";
+  static const String healthIcon = "assets/icons/health_icon.png";
+  static const String transportIcon = "assets/icons/transport_icon.png";
 }

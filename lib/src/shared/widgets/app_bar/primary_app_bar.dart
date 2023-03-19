@@ -37,5 +37,5 @@ class FWidgetsPrimaryAppBar extends StatelessWidget
   }
 
   @override
-  Size get preferredSize => const Size(double.infinity, 90);
+  Size get preferredSize => const Size(double.infinity, 60);
 }

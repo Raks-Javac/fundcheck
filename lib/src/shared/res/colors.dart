@@ -27,6 +27,7 @@ abstract class FColors {
   static const Color tertiaryGrey2 = Color(0xFFF2F2F7);
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color cardGreyTileColor = Color(0xFF8E8E93);
 
   //semantics colors for snacks
   static const Color primaryRed = Color(0xFFFF6961);

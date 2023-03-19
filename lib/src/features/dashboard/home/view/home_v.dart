@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fundcheck/src/app_level_locator/provider_locator.dart';
+import 'package:fundcheck/src/core/navigation/navigation_helpers.dart';
 import 'package:fundcheck/src/core/utils/extensions.dart';
 import 'package:fundcheck/src/features/dashboard/home/provider/home_provider.dart';
+import 'package:fundcheck/src/features/dashboard/home/view/transactions_details.dart';
+import 'package:fundcheck/src/features/dashboard/home/widgets/history_tile.dart';
 import 'package:fundcheck/src/features/dashboard/home/widgets/insight_widget.dart';
 import 'package:fundcheck/src/features/dashboard/home/widgets/transaction_date_tile.dart';
 import 'package:fundcheck/src/shared/res/gap.dart';
@@ -13,7 +16,13 @@ import 'package:fundcheck/src/shared/res/ui_helper.dart';
 import 'package:fundcheck/src/shared/widgets/cards/budget_balance.dart';
 import 'package:fundcheck/src/shared/widgets/render_svg.dart/render_icon.dart';
 
+enum BudgetEnum {
+  hasBudget,
+  noBudget,
+}
+
 class HomeView extends ConsumerWidget {
+  final BudgetEnum currentBudgetStatus = BudgetEnum.hasBudget;
   const HomeView({super.key});
 
   @override
@@ -212,22 +221,50 @@ class HomeView extends ConsumerWidget {
                               ),
                             ),
                           ),
-                          addVerticalSpacing(40),
-                          SizedBox(
-                            height: 90,
-                            child: Center(
-                              child: Text(
-                                "You have no transaction for the day",
-                                style: context.theme.textTheme.headlineMedium
-                                    ?.copyWith(
-                                  fontSize: 12.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color: FColors.primaryGrey,
-                                  fontFamily: FStrings.monteserratSemiBold,
-                                ),
-                              ),
-                            ),
-                          )
+                          currentBudgetStatus == BudgetEnum.hasBudget
+                              ? Column(
+                                  children: [
+                                    ...TransactionHistoryObject
+                                            .listOfCategories()
+                                        .map((e) {
+                                      return HistoryTile(
+                                          categoryEnum: HistoryTile
+                                              .returnEnumBasedOnCategory(e),
+                                          amount:
+                                              "₦${TransactionHistoryObject.sumAllAmountAndReturnTotal(TransactionHistoryObject.returnListBasedOnCatgories(e))}",
+                                          subtitle:
+                                              "${TransactionHistoryObject.returnListBasedOnCatgories(e).length} Transaction(s)",
+                                          onTap: () {
+                                            FNavigator.navigateToRoute(
+                                              TransactionDetailsView(
+                                                categoryTitle: e.toString(),
+                                                transactionslist:
+                                                    TransactionHistoryObject
+                                                        .returnListBasedOnCatgories(
+                                                            e),
+                                              ),
+                                            );
+                                          });
+                                    })
+                                  ],
+                                )
+                              : SizedBox(
+                                  height: 90,
+                                  child: Center(
+                                    child: Text(
+                                      "You have no transaction for the day",
+                                      style: context
+                                          .theme.textTheme.headlineMedium
+                                          ?.copyWith(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: FColors.primaryGrey,
+                                        fontFamily:
+                                            FStrings.monteserratSemiBold,
+                                      ),
+                                    ),
+                                  ),
+                                )
                         ],
                       ),
                     ],
