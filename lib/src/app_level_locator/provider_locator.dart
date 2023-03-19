@@ -7,6 +7,9 @@ final themeProvider = StateNotifierProvider((ref) {
   return ThemeProvider(AppThemeMode.light);
 });
 
+
+
+
 // final fadeProvider = StateNotifierProvider((ref){
 //   return FadeProvider()
 // })
