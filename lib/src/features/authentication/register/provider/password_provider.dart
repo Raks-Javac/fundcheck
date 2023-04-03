@@ -112,7 +112,7 @@ class PasswordRepositry extends StateNotifier<PasswordModel> {
     state = state.copyWith(togglePassword2: !state.togglePassword2);
   }
 
-  onPasswordChange(String? val) {
+  onPasswordChange(val) {
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');

@@ -128,9 +128,9 @@ class _LoginViewState extends ConsumerState<LoginView> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                             
                               GestureDetector(
-                                onTap: () => FNavigator.navigateToRoute(
-                                    const ResetPassword()),
+                                onTap: ()=> FNavigator.navigateToRoute(const ResetPassword()),
                                 child: Text(
                                   "Forget Password",
                                   style: context.theme.textTheme.labelLarge
