@@ -32,20 +32,20 @@ class TrasactionDateTile extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 5),
         decoration: activeIndex != tileIndex
             ? BoxDecoration(
-                color: themeProviderNotifier.mode == AppThemeMode.dark
+                color: themeProviderNotifier.mode == AppThemeEnum.dark
                     ? FColors.darkModeBackgroundColor
                     : FColors.tertiaryGrey2,
                 borderRadius: const BorderRadius.all(
                   Radius.circular(5),
                 ),
                 border: Border.all(
-                  color: themeProviderNotifier.mode == AppThemeMode.dark
+                  color: themeProviderNotifier.mode == AppThemeEnum.dark
                       ? FColors.primaryBlue
                       : Colors.transparent,
                 ),
               )
             : BoxDecoration(
-                color: themeProviderNotifier.mode == AppThemeMode.dark
+                color: themeProviderNotifier.mode == AppThemeEnum.dark
                     ? FColors.primaryBlue
                     : FColors.tertiaryBlue5,
                 borderRadius: const BorderRadius.all(
@@ -53,8 +53,8 @@ class TrasactionDateTile extends StatelessWidget {
                 ),
                 border: Border.all(
                   width:
-                      themeProviderNotifier.mode == AppThemeMode.dark ? 1.0 : 0,
-                  color: themeProviderNotifier.mode == AppThemeMode.light
+                      themeProviderNotifier.mode == AppThemeEnum.dark ? 1.0 : 0,
+                  color: themeProviderNotifier.mode == AppThemeEnum.light
                       ? FColors.primaryBlue
                       : FColors.white,
                 )),
@@ -69,10 +69,10 @@ class TrasactionDateTile extends StatelessWidget {
               fontSize: 12.sp,
               fontWeight: FontWeight.w600,
               color: activeIndex != tileIndex
-                  ? themeProviderNotifier.mode == AppThemeMode.light
+                  ? themeProviderNotifier.mode == AppThemeEnum.light
                       ? FColors.tertiaryGrey
                       : FColors.tertiaryGrey.withOpacity(0.8)
-                  : themeProviderNotifier.mode == AppThemeMode.dark
+                  : themeProviderNotifier.mode == AppThemeEnum.dark
                       ? FColors.white
                       : FColors.primaryBlue,
               fontFamily: FStrings.monteserratSemiBold,

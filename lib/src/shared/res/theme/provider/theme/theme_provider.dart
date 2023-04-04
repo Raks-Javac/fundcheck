@@ -2,34 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../../res.dart';
 
-enum AppThemeMode {
+enum AppThemeEnum {
   light,
   dark,
 }
 
 class ThemeProvider extends ChangeNotifier {
-  AppThemeMode state = AppThemeMode.light;
-  AppThemeMode get mode => state;
+  AppThemeEnum state = AppThemeEnum.light;
+  AppThemeEnum get mode => state;
 
-  changeThemeState(AppThemeMode changeMode) {
+  changeThemeState(AppThemeEnum changeMode) {
     state = changeMode;
     notifyListeners();
   }
 
   changeIfBool(bool boolMode) {
     if (boolMode == true) {
-      state = AppThemeMode.light;
+      state = AppThemeEnum.light;
     } else {
-      state = AppThemeMode.dark;
+      state = AppThemeEnum.dark;
     }
     notifyListeners();
   }
 
   ThemeData? returnThemeBasedOnMode() {
-    if (state == AppThemeMode.light) {
+    if (state == AppThemeEnum.light) {
       return FTheme.lightTheme;
     }
-    if (state == AppThemeMode.dark) {
+    if (state == AppThemeEnum.dark) {
       return FTheme.darkTheme;
     }
     notifyListeners();

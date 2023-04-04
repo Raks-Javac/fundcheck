@@ -68,7 +68,7 @@ class HomeView extends StatelessWidget {
                           child: CircleAvatar(
                             radius: 20,
                             backgroundColor:
-                                themeProviderNotifier.mode == AppThemeMode.dark
+                                themeProviderNotifier.mode == AppThemeEnum.dark
                                     ? FColors.darkModeBackgroundColor
                                     : FColors.tertiaryYellow,
                             child: Text(
