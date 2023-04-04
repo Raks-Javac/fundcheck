@@ -48,7 +48,7 @@ class OnBoardingView extends StatelessWidget {
                     isEnabled: true,
                     buttonTitle: 'Open an account',
                     onPressed: () =>
-                        FNavigator.navigateToRoute(const OpenAccount())),
+                        FNavigator.navigateToRoute( const OpenAccount())),
               ),
               addVerticalSpacing(10),
               Padding(

@@ -107,7 +107,7 @@ class PasswordProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  onPasswordChange(String? val) {
+  onPasswordChange(val) {
     final numRegex = RegExp(r'[0-9]');
     final alphabetRegex = RegExp(r'[A-Z]');
     final specialRegex = RegExp(r'\W');

@@ -52,8 +52,9 @@ class FAuthTField extends StatelessWidget {
         Text(
           label!,
           style: theme.textTheme.bodyMedium!.copyWith(
-              // fontWeight: FontWeight.w900,
-              fontSize: screenAwareSize(22, context)),
+               fontWeight: FontWeight.w900,
+               fontFamily: FStrings.monteserratRegular,
+              fontSize: screenAwareSize(19.sp, context)),
         ),
         addVertSpace(8.5.h),
         SizedBox(
