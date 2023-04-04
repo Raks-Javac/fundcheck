@@ -10,7 +10,7 @@ abstract class FIcons {
   static const String fingerPrint = "assets/images/fingerPrint.png";
   static const String homeIcon = 'assets/icons/home-2.png';
   static const String budgetIcon = 'assets/icons/budget.png';
-  static const String transactionIcon = 'assets/images/car.png';
+  static const String transactionIcon = 'assets/icons/transaction (2).png';
   static const String statIcon = 'assets/icons/stat.png';
   static const String moreIcon = 'assets/icons/category-2.png';
   static const String winkEmoji = "assets/images/wink_emoji.png";
@@ -24,7 +24,9 @@ abstract class FIcons {
   static const String addIcon = "assets/images/add (3).png";
   static const String messageImg = "assets/images/message (2).png";
   static const String circleArrow = "assets/images/circle arrow.png";
+
   static const String gadgetIcon = "assets/images/phone.png";
+
   static const String jewelryIcon = "assets/images/diamond.png";
   static const String savingIcon = "assets/images/cash (2).png";
   static const String travelIcon = "assets/images/plane.png";
@@ -39,5 +41,6 @@ abstract class FIcons {
   static const String smileyIcon = "assets/images/smiley.png";
   static const String ballIcon = "assets/images/ball.png";
   static const String bulbIcon = "assets/images/bulb.png";
+
   static const String handIcon = "assets/images/hand.png";
 }
