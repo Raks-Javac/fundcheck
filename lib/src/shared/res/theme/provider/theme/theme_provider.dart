@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fundcheck/src/core/utils/constants.dart';
 
 import '../../../res.dart';
 
@@ -13,6 +14,7 @@ class ThemeProvider extends ChangeNotifier {
 
   changeThemeState(AppThemeEnum changeMode) {
     state = changeMode;
+    FConstants.appThemeMode = state;
     notifyListeners();
   }
 
