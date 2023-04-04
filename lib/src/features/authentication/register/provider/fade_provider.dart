@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../core/utils/validators/f_validators.dart';
 
-final registerProvider = StateNotifierProvider((ref) {
-  return RegisterProvider();
-});
-
-class RegisterProvider extends StateNotifier<OpenAccountValidator> {
-  RegisterProvider() : super(OpenAccountValidator());
+class RegisterProvider extends ChangeNotifier {
+  OpenAccountValidator state = OpenAccountValidator();
 
   static bool buttonEnabled = false;
   bool get enableButtonGetter => buttonEnabled;
@@ -33,6 +28,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
     } else {
       buttonEnabled = false;
     }
+    notifyListeners();
   }
 
   //validate and bool check
@@ -47,6 +43,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       firstNameVal = state.firstName!;
     }
     checkTextField();
+    notifyListeners();
   }
 
   lastNameIsValidated(String val) {
@@ -59,6 +56,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       lastNameVal = state.lastname!;
     }
     checkTextField();
+    notifyListeners();
   }
 
   emailIsValidated(String val) {
@@ -71,6 +69,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       emailVal = state.email!;
     }
     checkTextField();
+    notifyListeners();
   }
 
   numberIsValidated(String val) {
@@ -84,6 +83,7 @@ class RegisterProvider extends StateNotifier<OpenAccountValidator> {
       phoneNumberVal = state.phoneNumber!;
     }
     checkTextField();
+    notifyListeners();
   }
 }
 

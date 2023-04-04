@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PasswordModel {
   String firstPass;
@@ -93,13 +92,8 @@ class PasswordModel {
   }
 }
 
-final passwordProvider =
-    StateNotifierProvider<PasswordRepositry, PasswordModel>((ref) {
-  return PasswordRepositry();
-});
-
-class PasswordRepositry extends StateNotifier<PasswordModel> {
-  PasswordRepositry() : super(PasswordModel());
+class PasswordProvider extends ChangeNotifier {
+  PasswordModel state = PasswordModel();
 
   final TextEditingController password1Controller = TextEditingController();
   final TextEditingController password2Controller = TextEditingController();
@@ -110,6 +104,7 @@ class PasswordRepositry extends StateNotifier<PasswordModel> {
 
   toggleSecondPassword() {
     state = state.copyWith(togglePassword2: !state.togglePassword2);
+    notifyListeners();
   }
 
   onPasswordChange(String? val) {
@@ -141,5 +136,6 @@ class PasswordRepositry extends StateNotifier<PasswordModel> {
     } else {
       state = state.copyWith(equalPassword: false);
     }
+    notifyListeners();
   }
 }

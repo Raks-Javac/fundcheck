@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../res.dart';
 
@@ -8,13 +7,13 @@ enum AppThemeMode {
   dark,
 }
 
-class ThemeProvider extends StateNotifier<AppThemeMode> {
-  ThemeProvider(super.state);
-
+class ThemeProvider extends ChangeNotifier {
+  AppThemeMode state = AppThemeMode.light;
   AppThemeMode get mode => state;
 
   changeThemeState(AppThemeMode changeMode) {
     state = changeMode;
+    notifyListeners();
   }
 
   changeIfBool(bool boolMode) {
@@ -23,6 +22,7 @@ class ThemeProvider extends StateNotifier<AppThemeMode> {
     } else {
       state = AppThemeMode.dark;
     }
+    notifyListeners();
   }
 
   ThemeData? returnThemeBasedOnMode() {
@@ -32,6 +32,7 @@ class ThemeProvider extends StateNotifier<AppThemeMode> {
     if (state == AppThemeMode.dark) {
       return FTheme.darkTheme;
     }
+    notifyListeners();
     return FTheme.lightTheme;
   }
 }

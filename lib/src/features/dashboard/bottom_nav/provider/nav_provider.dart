@@ -1,9 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/material.dart';
 
-final navProvider = StateNotifierProvider((ref) => NavProvider(0));
-
-class NavProvider extends StateNotifier<int> {
-  NavProvider(super.state);
+class NavProvider extends ChangeNotifier {
+  NavProvider({int});
   static int activeIndexVal = 0;
   int get activeIndex => activeIndexVal;
 
@@ -12,6 +10,7 @@ class NavProvider extends StateNotifier<int> {
   }
 
   changeActiveIndexstate(int index) {
-    activeIndex = state = index;
+    activeIndex = index;
+    notifyListeners();
   }
 }

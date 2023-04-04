@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundcheck/src/core/utils/biometrics_fc.dart';
 import 'package:fundcheck/src/core/utils/validators/f_validators.dart';
 import 'package:local_auth/local_auth.dart';
 
-final loginProvider = AutoDisposeStateNotifierProvider((ref) {
-  return LoginProvider();
-});
-
-class LoginProvider extends StateNotifier<LoginInterface> {
-  LoginProvider() : super(LoginInterface());
+class LoginProvider extends ChangeNotifier {
+  LoginInterface state = LoginInterface();
   final TextEditingController emailPhoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   static bool emailPhoneNumVal = false;
@@ -28,6 +23,7 @@ class LoginProvider extends StateNotifier<LoginInterface> {
   togglePasswordField() {
     state = state.copyWith(showPasswordCopy: !showPassword);
     showPassword = state.showPassword!;
+    notifyListeners();
   }
 
   enableEmailField(String val) {
@@ -41,6 +37,7 @@ class LoginProvider extends StateNotifier<LoginInterface> {
       emailPhoneNumVal = state.emailPhoneNumber!;
     }
     checkTextField();
+    notifyListeners();
   }
 
   enablePasswordField(String val) {
@@ -54,14 +51,16 @@ class LoginProvider extends StateNotifier<LoginInterface> {
       passwordVal = state.password!;
     }
     checkTextField();
+    notifyListeners();
   }
 
-  void checkTextField(){
+  void checkTextField() {
     if (emailPhoneNumVal && passwordVal) {
       buttonEnabled = true;
-    }else {
+    } else {
       buttonEnabled = false;
     }
+    notifyListeners();
   }
 
   checkDeviceOnInit() async {
@@ -75,6 +74,7 @@ class LoginProvider extends StateNotifier<LoginInterface> {
       state = state.copyWith(isFaceidCopy: false);
       isFaceIDabled = state.isFaceId!;
     }
+    notifyListeners();
   }
 }
 
@@ -98,7 +98,7 @@ class LoginInterface {
     bool? isButtonEnabledCopy,
     bool? showPasswordCopy,
     bool? isFaceidCopy,
-  }){
+  }) {
     return LoginInterface(
         isButtonEnabled: isButtonEnabledCopy ?? isButtonEnabled,
         emailPhoneNumber: emailPhoneNumberCopy ?? emailPhoneNumber,

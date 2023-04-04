@@ -1,7 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+// final homeProvider = StateNotifierProvider((ref) => HomeProvider());
 
-final homeProvider = StateNotifierProvider((ref) => HomeProvider());
+import 'package:flutter/material.dart';
 
-class HomeProvider extends StateNotifier {
-  HomeProvider() : super(null);
+class HomeProvider extends ChangeNotifier {
+  HomeProvider();
 }

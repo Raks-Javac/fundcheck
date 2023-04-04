@@ -1,24 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fundcheck/src/features/authentication/login/views/login_v.dart';
-
-import '../../../app_level_locator/provider_locator.dart';
 import '../../../core/navigation/navigation_helpers.dart';
-import '../../../core/utils/extensions.dart';
 import '../../../shared/res/gap.dart';
-import '../../../shared/res/res.dart';
-import '../../../shared/res/theme/provider/theme/theme_provider.dart';
 import '../../../shared/widgets/buttons/bordered_buttton.dart';
 import '../../../shared/widgets/buttons/primary_button.dart';
 import '../../authentication/register/views/open_account.dart';
 
-class OnBoardingView extends ConsumerWidget {
+class OnBoardingView extends StatelessWidget {
   const OnBoardingView({super.key});
-
+  // ref.watch(themeProvider);
   @override
-  Widget build(BuildContext context, ref) {
-    ref.watch(themeProvider);
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -27,27 +19,27 @@ class OnBoardingView extends ConsumerWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "OnBoarding",
-                    style: context.theme.textTheme.bodyMedium,
-                  ),
-                  CupertinoSwitch(
-                    value: ref.watch(themeProvider.notifier).mode ==
-                            AppThemeMode.light
-                        ? true
-                        : false,
-                    onChanged: (val) {
-                      ref.watch(themeProvider.notifier).changeIfBool(val);
-                    },
-                    thumbColor: FColors.white,
-                    trackColor: context.theme.primaryColor,
-                    activeColor: context.theme.primaryColor,
-                  )
-                ],
-              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.center,
+              //   children: [
+              //     Text(
+              //       "OnBoarding",
+              //       style: context.theme.textTheme.bodyMedium,
+              //     ),
+              //     CupertinoSwitch(
+              //       value: ref.watch(themeProvider.notifier).mode ==
+              //               AppThemeMode.light
+              //           ? true
+              //           : false,
+              //       onChanged: (val) {
+              //         ref.watch(themeProvider.notifier).changeIfBool(val);
+              //       },
+              //       thumbColor: FColors.white,
+              //       trackColor: context.theme.primaryColor,
+              //       activeColor: context.theme.primaryColor,
+              //     )
+              //   ],
+              // ),
               addVerticalSpacing(70),
               // FPrimaryButton(onClick: (){}, label: 'Open an account',),
               Padding(
